@@ -17,7 +17,7 @@ const routes: Routes = [
         component: ListComponent,
       },
       {
-        path: 'details/:id',
+        path: 'chart/:id',
         pathMatch: 'full',
         component: DetailsComponent, 
       },

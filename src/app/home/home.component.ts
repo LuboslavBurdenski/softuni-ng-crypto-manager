@@ -14,15 +14,6 @@ export class HomeComponent {
   emptyMatch: Boolean;
   selectedCoin;
   constructor(private userService: UserService, private positionCreationService: PositionCreationService) {
-    // this.data = interval(1000).pipe(
-    //   switchMap(() => this.userService.loadPrice()
-    //   )
-    //)
-    // this.data = interval(1000).pipe(
-    //   switchMap(() => this.userService.loadPrice()
-    //   ),
-
-    // )
     this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins });
   }
 

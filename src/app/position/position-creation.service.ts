@@ -10,7 +10,7 @@ export class PositionCreationService {
   constructor(public http: HttpClient) { }
 
   getAllPositions(){
-    return 
+    return this.http.get('http://localhost:3000/api/position/list', {withCredentials: true});
   }
   createPosition(data) {
     return this.http.post('http://localhost:3000/api/position/create', data, {withCredentials: true});

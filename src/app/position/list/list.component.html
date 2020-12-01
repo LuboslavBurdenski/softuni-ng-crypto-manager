@@ -1,24 +1,26 @@
 <mat-card class='filter'>
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    <input matInput #input>
   </mat-form-field>
 </mat-card>
 
 <div class="container">
   <mat-card class="example-card">
     <mat-card-content class="grid">
-      <mat-card class="example-card-two" *ngFor="let user of users">
+      <mat-card class="example-card-two" *ngFor="let position of positions | async">
         <mat-card-header>
-          <mat-card-title>BTC</mat-card-title>
-          <mat-card-subtitle>-3% in 24h</mat-card-subtitle>
+          <mat-card-title>{{position.symbol | uppercase}}</mat-card-title>
+          <mat-card-subtitle  [ngStyle]="{'color': position.changeIn24h > 0 ? 'teal' : 'hotpink'}"
+          >{{position.changeIn24h | number : '1.0-4'}}% in 24h</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <h1>+24%</h1>
+          <h1  [ngStyle]="{'color': position.prfLossPerCent > 0 ? 'teal' : 'hotpink'}"
+          >{{position.prfLossPerCent | number : '1.0-4' }}%</h1>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button>Details</button>
-          <button mat-button  (click)="portfolioCardClickTradingView(user)">TradingView
+          <button mat-button (click)="portfolioCardClickTradingView(position.symbol)">TradingView
             <img style="width: 20px; height: 20px;"
               src="https://user-images.githubusercontent.com/5462382/34194692-9a517de4-e51f-11e7-8af9-46f9ea4cf555.png"></button>
         </mat-card-actions>

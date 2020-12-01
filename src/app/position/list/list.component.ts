@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/home/coins.service';
+import { interval } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { PositionCreationService } from '../position-creation.service';
 
 export interface PortfolioData {
   id: string,
@@ -16,24 +18,31 @@ export interface PortfolioData {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  users = ['Fabio', 'Leonardo', 'Thomas', 'Gabriele', 'Fabrizio', 'John', 'Luis', 'Kate', 'Max'];
-  dataSource = new MatTableDataSource(this.users);
-  constructor(private router: Router) { }
+  positions;
+  // dataSource = new MatTableDataSource(this.positions);
 
-  ngOnInit() {
-  }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  constructor(private router: Router, private listPositions: PositionCreationService) {
+    //this.listPositions.getAllPositions().subscribe((data) => {this.positions = data; console.log(data);});
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.positions = interval(2000).pipe(
+      switchMap(() => this.listPositions.getAllPositions()),
+    );
+    console.log(this.positions);
   }
-  portfolioCardClickTradingView(user) {
-    console.log(user);
-    //this.router.navigate(['position', 'details', card.symbol]);
-    // #row (click)="portfolioRowClickDetails(row)"
+
+  ngOnInit() { }
+  
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
+  portfolioCardClickTradingView(symbol: String) {
+    console.log(symbol);
+    this.router.navigate(['position', 'chart', symbol.toUpperCase()])
   }
   // getTotalCost() {
   //   return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);

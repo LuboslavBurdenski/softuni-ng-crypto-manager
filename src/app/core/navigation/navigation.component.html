@@ -29,9 +29,13 @@
           <mat-icon>login</mat-icon>
           Login
         </a>
-        <a mat-list-item routerLink="/register">
+        <a  mat-list-item routerLink="/register">
           <mat-icon>plus_one</mat-icon>
           Register
+        </a>
+        <a *ngIf='loggedIn' mat-list-item routerLink="/register">
+          <mat-icon>logout</mat-icon>
+          Logout
         </a>
       </mat-nav-list>
   
@@ -41,7 +45,7 @@
       <mat-toolbar color="primary">
         <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
           *ngIf="isHandset$ | async">
-          <mat-icon>navigation</mat-icon>
+          <mat-icon>list</mat-icon>
         </button>
        <!-- place for text -->
       </mat-toolbar>

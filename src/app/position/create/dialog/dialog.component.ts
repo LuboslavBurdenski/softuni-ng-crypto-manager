@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { PositionCreationService } from '../../position-creation.service';
 
 
@@ -25,8 +26,9 @@ export class DialogComponent implements OnInit {
     form.value.coinId = id;
     form.value.symbol = symbol;
     console.log(form.value);
+
     this.positionCreationService.createPosition(form.value).subscribe((res) => {
-      this.router.navigate(['position', 'list']);
+      timer(2000).subscribe(() => { this.router.navigate(['position', 'list']); });
       console.log(res)
     }, (e) => { console.log(e); });
   }
