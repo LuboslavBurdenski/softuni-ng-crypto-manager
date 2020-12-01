@@ -8,19 +8,19 @@
                 <mat-label>Entry price</mat-label>
                 <input type="number" matInput name="entry" required ngModel #entry='ngModel'>
             </mat-form-field>
-            <mat-card class="alert" *ngIf='!entry.valid && entry.touched'>Simple card</mat-card>
+            <mat-card class="alert" *ngIf='!entry.valid && entry.touched'>Entry price is required!</mat-card>
 
             <mat-form-field class="full-width">
                 <mat-label>Target profit</mat-label>
                 <input type="number" matInput placeholder="Target profit" name="target" ngModel #target='ngModel'>
             </mat-form-field>
-            <mat-card class="alert" *ngIf='(target.value < entry.value) && target.dirty'>Simple card</mat-card>
+            <mat-card class="alert" *ngIf='(target.value < entry.value) && target.dirty'>Target profit must be higher than the entry price!</mat-card>
 
             <mat-form-field class="full-width">
                 <mat-label>Stop loss</mat-label>
                 <input type="number" matInput placeholder="Stop loss" name="stop" ngModel #stop='ngModel'>
             </mat-form-field>
-            <mat-card class="alert" *ngIf='(stop.value > entry.value) && stop.dirty'>Simple card</mat-card>
+            <mat-card class="alert" *ngIf='(stop.value > entry.value) && stop.dirty'>Stop loss must be lower than the entry price!</mat-card>
 
             <mat-form-field class="full-width">
                 <mat-label>Sum</mat-label>

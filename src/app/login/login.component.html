@@ -1,25 +1,3 @@
-<!-- <div class="entire">
-    <mat-toolbar>
-        <span>LOGIN</span>
-    </mat-toolbar>
-    <mat-card class="my-card">
-        <mat-card-content>
-            <form class="my-form">
-                <mat-form-field class="full-width">
-                    <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email" name="email">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password" name="password">
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button (click)="login()" color="accent">LOGIN</button>
-        </mat-card-actions>
-    </mat-card>
-</div> -->
 <div class="signin-content">
     <app-loader [isLoading]='isLoading'></app-loader>
     <mat-card>
@@ -35,7 +13,8 @@
             </mat-error> -->
                 </mat-form-field>
                 <mat-form-field class="full-width-input">
-                    <input matInput type="password" placeholder="Password" name='password' ngModel #password='ngModel' required>
+                    <input matInput type="password" placeholder="Password" name='password' ngModel #password='ngModel'
+                        required>
                     <!-- <mat-error *ngIf="isFieldInvalid('userName')">
               Please inform your password
             </mat-error> -->

@@ -3,14 +3,31 @@
         <mat-card-content>
             <form class="my-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
                 <span>Register</span>
+
                 <mat-form-field class="full-width-input">
                     <mat-label>First Name</mat-label>
-                    <input matInput placeholder="Username" name="username" ngModel required #username="ngModel">
+                    <input matInput placeholder="Username" name="username" ngModel required minlength="5"
+                        pattern="[a-zA-Z0-9._]+" #username="ngModel">
                 </mat-form-field>
+                <mat-card class="alert" *ngIf='username.errors?.required && username.touched'>Username is required!
+                </mat-card>
+                <mat-card class="alert" *ngIf='username.errors?.minlength && username.dirty'>Username must be
+                    minimum 5
+                    at least characters!</mat-card>
+                <mat-card class="alert" *ngIf='username.errors?.pattern && username.dirty'>Username must contain
+                    only
+                    latin letters and digits, "." and "_"!</mat-card>
+
+
                 <mat-form-field class="full-width-input">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email" name="email" ngModel required #email="ngModel">
+                    <input matInput placeholder="Email" name="email" ngModel required email #email="ngModel">
                 </mat-form-field>
+                <mat-card class="alert" *ngIf='email.errors?.required && email.touched'>Email is required!
+                </mat-card>
+                <mat-card class="alert" *ngIf='email.errors?.email && email.dirty'>Email must be in a valid
+                    form! /yourUsername@mail.com/
+                </mat-card>
 
                 <!-- <mat-form-field appearance="fill">
                     <mat-label>Select main currency*</mat-label>
@@ -24,22 +41,29 @@
                 </mat-form-field> -->
 
                 <mat-form-field class="full-width-input">
+                    <mat-label>Account power</mat-label>
+                    <input matInput placeholder="Account power *" name="power" ngModel required #power="ngModel">
+                </mat-form-field>
+                <mat-card class="alert" *ngIf='power.errors?.required && power.touched'>Account power is required!
+                </mat-card>
+                <mat-form-field class="full-width-input">
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password" name="password" ngModel required #password="ngModel">
+                    <input matInput type="password" placeholder="Password" name="password" ngModel required #password="ngModel">
                 </mat-form-field>
 
                 <mat-form-field class="full-width-input">
                     <mat-label>Repeat password</mat-label>
-                    <input matInput placeholder="Password" name="repeatPassword" ngModel required
+                    <input matInput type="password" placeholder="Password" name="repeatPassword" ngModel required
                         #repeatPassword="ngModel">
                 </mat-form-field>
                 <mat-card class="alert" *ngIf='!!error'>{{error}}</mat-card>
+
+
                 <mat-card-actions>
-                    <button mat-raised-button color="accent">REGISTER</button>
+                    <button [disabled]='f.invalid' mat-raised-button color="accent" [mat-dialog-close]="false"
+                        cdkFocusInitial (click)="onSubmit(f)">REGISTER</button>
                 </mat-card-actions>
             </form>
         </mat-card-content>
-       
-       
     </mat-card>
 </div>
