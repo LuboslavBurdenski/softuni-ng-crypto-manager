@@ -1,0 +1,87 @@
+<div class="entire-table">
+
+    <div class="excel">
+        <img class="excel-icon" src="https://image.flaticon.com/icons/png/512/888/888850.png" alt=""
+        (click)="exportAsXLSX()" style="width: 40px; height: 40px; margin-top: auto;">
+    </div>
+   
+    
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="image">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
+        <td mat-cell *matCellDef="let row"><img [src]="row.image"></td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td  mat-cell *matCellDef="let row" > {{row.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="symbol">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Coin </th>
+        <td mat-cell *matCellDef="let row"> {{row.symbol}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="entry">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Entry </th>
+        <td mat-cell *matCellDef="let row"> {{row.entry}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="current">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Current price </th>
+        <td mat-cell *matCellDef="let row"> {{row.current}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sum">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Sum </th>
+        <td mat-cell *matCellDef="let row"> {{row.sum}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="leverage">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Leverage </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.leverage"> {{row.leverage}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="positionSize">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Pos. size </th>
+        <td mat-cell *matCellDef="let row"> {{row.positionSize}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prtLoss">
+        <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Prt/Loss </th>
+        <td mat-cell *matCellDef="let row"> {{row.prtLoss}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prtLossPerCent">
+        <th  class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Prt/Loss % </th>
+        <td mat-cell *matCellDef="let row">{{row.prtLossPerCent}}% </td>
+      </ng-container>
+
+      <ng-container  matColumnDef="change">
+        <th  class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Change 24h </th>
+        <td mat-cell *matCellDef="let row"> {{row.change}} </td>
+      </ng-container>
+
+      <tr class="mat-header" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row 
+        [ngStyle]="{'background-color': row.prtLoss > 0 ? '#69f0ae' :  row.prtLoss == 0 ? 'white': 'hotpink' }"
+        *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="11">No data matching the filter "{{input.value}}"</td>
+      </tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+    
+  </div>
+  
+</div>

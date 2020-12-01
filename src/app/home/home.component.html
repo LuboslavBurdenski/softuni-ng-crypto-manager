@@ -1,0 +1,25 @@
+<!-- <div *ngFor="let couple of data | async">
+    <h1 style="color:blueviolet">{{couple.price}}</h1>
+</div> -->
+
+
+<div class="entire-form">
+  
+  <mat-form-field appearance="fill">
+    <mat-label>TOP 100 coins from CoinGecko</mat-label>
+    <mat-select  >
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
+      <mat-option  *ngFor="let coin of filtered" [disabled]="emptyMatch" [value]="coin.symbol" #selected (click)="addToPosition(selected)" >
+
+        {{coin.id | uppercase}}/{{coin.symbol | uppercase}}
+
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <app-main ></app-main>
+  
+</div>

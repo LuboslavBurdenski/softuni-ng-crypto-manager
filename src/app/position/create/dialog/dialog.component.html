@@ -1,0 +1,48 @@
+<div class="entire">
+    <h2 mat-dialog-title>{{selectedCoin | uppercase}}</h2>
+
+    <mat-dialog-content class="mat-typography">
+        <form #f="ngForm" class="my-form">
+
+            <mat-form-field class="full-width">
+                <mat-label>Entry price</mat-label>
+                <input type="number" matInput name="entry" required ngModel #entry='ngModel'>
+            </mat-form-field>
+            <mat-card class="alert" *ngIf='!entry.valid && entry.touched'>Simple card</mat-card>
+
+            <mat-form-field class="full-width">
+                <mat-label>Target profit</mat-label>
+                <input type="number" matInput placeholder="Target profit" name="target" ngModel #target='ngModel'>
+            </mat-form-field>
+            <mat-card class="alert" *ngIf='(target.value < entry.value) && target.dirty'>Simple card</mat-card>
+
+            <mat-form-field class="full-width">
+                <mat-label>Stop loss</mat-label>
+                <input type="number" matInput placeholder="Stop loss" name="stop" ngModel #stop='ngModel'>
+            </mat-form-field>
+            <mat-card class="alert" *ngIf='(stop.value > entry.value) && stop.dirty'>Simple card</mat-card>
+
+            <mat-form-field class="full-width">
+                <mat-label>Sum</mat-label>
+                <input type="number" matInput placeholder="Sum" name="sum" required ngModel #sum='ngModel'>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="full-width">
+                <mat-label>Leverage</mat-label>
+                <input type="number" matInput placeholder="Leverage" name="leverage" ngModel>
+            </mat-form-field> -->
+            
+            <mat-form-field class="full-width">
+                <mat-label>Notes</mat-label>
+                <input type="text" matInput placeholder="Notes" name="notes" ngModel>
+            </mat-form-field>
+        </form>
+
+        <button [disabled]='f.invalid' mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial
+            (click)="onSubmit(f)">Open</button>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+    </mat-dialog-actions>
+
+</div>

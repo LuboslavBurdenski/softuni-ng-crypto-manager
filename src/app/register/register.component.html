@@ -1,0 +1,45 @@
+<div class="signup-content">
+    <mat-card class="my-card">
+        <mat-card-content>
+            <form class="my-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <span>Register</span>
+                <mat-form-field class="full-width-input">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="Username" name="username" ngModel required #username="ngModel">
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" name="email" ngModel required #email="ngModel">
+                </mat-form-field>
+
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Select main currency*</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let currency of currencies" [value]="currency" #selected>
+
+                            {{currency | uppercase}}
+
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
+                <mat-form-field class="full-width-input">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" name="password" ngModel required #password="ngModel">
+                </mat-form-field>
+
+                <mat-form-field class="full-width-input">
+                    <mat-label>Repeat password</mat-label>
+                    <input matInput placeholder="Password" name="repeatPassword" ngModel required
+                        #repeatPassword="ngModel">
+                </mat-form-field>
+                <mat-card class="alert" *ngIf='!!error'>{{error}}</mat-card>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent">REGISTER</button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+       
+       
+    </mat-card>
+</div>

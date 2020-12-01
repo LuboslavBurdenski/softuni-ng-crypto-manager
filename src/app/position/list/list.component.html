@@ -1,0 +1,30 @@
+<mat-card class='filter'>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+</mat-card>
+
+<div class="container">
+  <mat-card class="example-card">
+    <mat-card-content class="grid">
+      <mat-card class="example-card-two" *ngFor="let user of users">
+        <mat-card-header>
+          <mat-card-title>BTC</mat-card-title>
+          <mat-card-subtitle>-3% in 24h</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h1>+24%</h1>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Details</button>
+          <button mat-button  (click)="portfolioCardClickTradingView(user)">TradingView
+            <img style="width: 20px; height: 20px;"
+              src="https://user-images.githubusercontent.com/5462382/34194692-9a517de4-e51f-11e7-8af9-46f9ea4cf555.png"></button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

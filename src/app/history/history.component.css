@@ -1,0 +1,60 @@
+.entire-table {
+    width: 90%;
+    height: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+table {
+    text-align: justify;
+    width: 100%;
+    table-layout: auto;
+    overflow: scroll;
+}
+
+mat-header-row {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1;
+    background-color: inherit;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td, th {
+    overflow: hidden;
+    width: auto;
+}
+
+th {
+    font-weight: bold;
+    
+}
+
+table tr.mat-row {
+    height: 45px;
+    margin-left: 50px;
+}
+
+table tr.mat-header {
+    text-align: center;
+    height: 50px;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
+
+.w-75{
+    width: 75px;
+}
+.th-center{
+    text-align: center;
+}
