@@ -12,6 +12,7 @@ export class RegisterComponent {
   currencies: string[] = ['eur', 'usd'];
   isLoading: boolean = true;
   error: Error = null;
+  
   constructor(private userService: UserService, private router: Router) { }
 
   onSubmit(f: NgForm) {

@@ -1,45 +1,31 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 
-declare const TradingView;
+export interface IDetails {
+  name: string;
+  weight: number;
+};
+const DETAILS_DATA: IDetails[] = [
+  { name: 'Symbol', weight: 1.0079},
+  { name: 'Coin', weight: 4.0026},
+  { name: 'Target profit', weight: 9.0122},
+  { name: 'Stop loss', weight: 10.811},
+  { name: 'Profit/loss', weight: 12.0107},
+  { name: 'Profit/loss %', weight: 14.0067},
+  { name: 'Change in last 24h', weight: 15.9994},
+  { name: 'Notes', weight: 18.9984},
+  { name: 'Created at', weight: 20.1797},
+];
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit, AfterViewInit {
-  symbol: String;
-  constructor(private route: ActivatedRoute) {
-    this.symbol = `${this.route.snapshot.params.id}${'EUR'}`
-  }
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    new TradingView.widget(
-      {
-        "width": "100%",
-        "height": 680,
-        "symbol": `COINBASE:${this.symbol}`,
-        "timezone": "EUROPE/BELGRADE",
-        "theme": "Light",
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": "#f1f3f6",
-        "enable_publishing": false,
-        "withdateranges": true,
-        "range": "ytd",
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "show_popup_button": true,
-        "popup_width": "2000",
-        "popup_height": "2000",
-        "no_referral_id": true,
-
-        "container_id": "tradingview_bac65"
-      }
-    );
-  }
-
+export class DetailsComponent{
  
+  constructor() { }
+
+  displayedColumns: string[] = [ 'name', 'weight'];
+  dataSource = DETAILS_DATA;
 
 }

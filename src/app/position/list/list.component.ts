@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { interval } from 'rxjs';
+import { interval, observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { PositionCreationService } from '../position-creation.service';
 
@@ -23,8 +23,7 @@ export class ListComponent implements OnInit {
 
   constructor(private router: Router, private listPositions: PositionCreationService) {
     //this.listPositions.getAllPositions().subscribe((data) => {this.positions = data; console.log(data);});
-
-    this.positions = interval(2000).pipe(
+    this.positions = interval(25000).pipe(
       switchMap(() => this.listPositions.getAllPositions()),
     );
     console.log(this.positions);

@@ -3,6 +3,7 @@ import { interval, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { UserService } from './coins.service';
 import { PositionCreationService } from '../position/position-creation.service'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,8 +14,10 @@ export class HomeComponent {
   filtered;
   emptyMatch: Boolean;
   selectedCoin;
-  constructor(private userService: UserService, private positionCreationService: PositionCreationService) {
-    this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins });
+  
+  constructor( private userService: UserService, private positionCreationService: PositionCreationService) {
+    this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; console.log(this.data); });
+   
   }
 
   addToPosition(e) {

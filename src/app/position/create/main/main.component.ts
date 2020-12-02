@@ -15,6 +15,7 @@ export class MainComponent {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '350px',
       direction: "ltr",
+      data : "some data!!!",
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

@@ -41,10 +41,10 @@
                 </mat-form-field> -->
 
                 <mat-form-field class="full-width-input">
-                    <mat-label>Account power</mat-label>
-                    <input matInput placeholder="Account power *" name="power" ngModel required #power="ngModel">
+                    <mat-label>Account balance</mat-label>
+                    <input type="number" matInput placeholder="Account balance *" name="balance" ngModel required #balance="ngModel">
                 </mat-form-field>
-                <mat-card class="alert" *ngIf='power.errors?.required && power.touched'>Account power is required!
+                <mat-card class="alert" *ngIf='balance.errors?.required && balance.touched'>Account balance is required!
                 </mat-card>
                 <mat-form-field class="full-width-input">
                     <mat-label>Password</mat-label>

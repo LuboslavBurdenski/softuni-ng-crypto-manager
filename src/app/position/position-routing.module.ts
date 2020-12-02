@@ -4,6 +4,7 @@ import { MainComponent } from './create/main/main.component';
 import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
+import { TradingViewChartComponent } from './tradingViewChart/tradingViewChart.component';
 
 
 
@@ -17,14 +18,14 @@ const routes: Routes = [
         component: ListComponent,
       },
       {
-        path: 'chart/:id',
+        path: 'details/:id',
         pathMatch: 'full',
         component: DetailsComponent, 
       },
       {
-        path: 'edit/:id',
+        path: 'chart/:id',
         pathMatch: 'full',
-        component: EditComponent, 
+        component: TradingViewChartComponent, 
       },
     ],
   },

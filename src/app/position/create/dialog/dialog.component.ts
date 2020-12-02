@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { PositionCreationService } from '../../position-creation.service';
@@ -15,14 +16,20 @@ export class DialogComponent implements OnInit {
     return this.positionCreationService.selectedCoin;
   }
 
-  constructor(private positionCreationService: PositionCreationService, private router: Router) { }
+  constructor(
+    private positionCreationService: PositionCreationService,
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    console.log(this.data);
+  }
   ngOnInit() { }
 
   onSubmit(form) {
-
+    let shares = Number(form.value.sum) / Number(form.value.entry);
     let id = this.selectedCoin.split('/')[0].toLowerCase();
     let symbol = this.selectedCoin.split('/')[1].toLowerCase();
-
+    form.value.shares = shares;
     form.value.coinId = id;
     form.value.symbol = symbol;
     console.log(form.value);
