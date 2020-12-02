@@ -2,18 +2,18 @@ import { Component } from '@angular/core';
 
 export interface IDetails {
   name: string;
-  weight: number;
+  value: number;
 };
 const DETAILS_DATA: IDetails[] = [
-  { name: 'Symbol', weight: 1.0079},
-  { name: 'Coin', weight: 4.0026},
-  { name: 'Target profit', weight: 9.0122},
-  { name: 'Stop loss', weight: 10.811},
-  { name: 'Profit/loss', weight: 12.0107},
-  { name: 'Profit/loss %', weight: 14.0067},
-  { name: 'Change in last 24h', weight: 15.9994},
-  { name: 'Notes', weight: 18.9984},
-  { name: 'Created at', weight: 20.1797},
+  { name: 'Symbol', value: 1.0079},
+  { name: 'Coin', value: 4.0026},
+  { name: 'Target profit', value: 9.0122},
+  { name: 'Stop loss', value: 10.811},
+  { name: 'Profit/loss', value: 12.0107},
+  { name: 'Profit/loss %', value: 14.0067},
+  { name: '24h change', value: 15.9994},
+  { name: 'Notes', value: 18.9984},
+  { name: 'Created at', value: 20.1797},
 ];
 
 @Component({
@@ -25,7 +25,7 @@ export class DetailsComponent{
  
   constructor() { }
 
-  displayedColumns: string[] = [ 'name', 'weight'];
+  displayedColumns: string[] = [ 'name', 'value'];
   dataSource = DETAILS_DATA;
 
 }

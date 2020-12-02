@@ -2,7 +2,9 @@ table {
     width: 90%;
     margin-bottom: 1%;
 }
-
+app-edit{
+    width: 40%;
+}
 mat-card {
     margin-left: 4%;
     margin-right: 4%;
@@ -11,8 +13,13 @@ mat-card {
     align-items: stretch;
 }
 
-button{
-    color:#21CE99;
+button {
+    width: 40% ;
+    background-color: #21CE99 !important;
+}
+
+button.rigth-btn {
+    margin-left: 10%;
 }
 
 .right {

@@ -20,8 +20,7 @@ export class ProfileComponent implements OnInit {
     { text: 'Five', cols: 1, rows: 2, color: 'lightblue' },
     { text: 'Six', cols: 1, rows: 2, color: 'lightgreen' },
     { text: 'Seven', cols: 1, rows: 2, color: 'lightpink' },
-    { text: 'Eight', cols: 2, rows: 2, color: '#DDBDF1' },
-    { text: 'Nine', cols: 2, rows: 2, color: '#DDBDF1' },
+    
   ];
   constructor(private profileService: ProfileService) {
     this.profileService.userProfile().subscribe(resp =>{ console.log(resp)});

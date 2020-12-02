@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { interval, observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
 import { PositionCreationService } from '../position-creation.service';
 
 export interface PortfolioData {
@@ -23,14 +21,12 @@ export class ListComponent implements OnInit {
 
   constructor(private router: Router, private listPositions: PositionCreationService) {
     //this.listPositions.getAllPositions().subscribe((data) => {this.positions = data; console.log(data);});
-    this.positions = interval(25000).pipe(
-      switchMap(() => this.listPositions.getAllPositions()),
-    );
+    this.positions = this.listPositions.getAllPositions();
     console.log(this.positions);
   }
 
   ngOnInit() { }
-  
+
   // applyFilter(event: Event) {
   //   const filterValue = (event.target as HTMLInputElement).value;
   //   this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -42,6 +38,10 @@ export class ListComponent implements OnInit {
   portfolioCardClickTradingView(symbol: String) {
     console.log(symbol);
     this.router.navigate(['position', 'chart', symbol.toUpperCase()])
+  }
+  portfolioCardClickDetails(symbol: String) {
+    console.log(symbol);
+    this.router.navigate(['position', 'details', symbol.toUpperCase()])
   }
   // getTotalCost() {
   //   return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);

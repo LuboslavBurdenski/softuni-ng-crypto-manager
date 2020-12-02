@@ -20,3 +20,6 @@ mat-card {
 h3 {
     font-weight: bold;
 }
+button{
+    background-color: #21CE99 !important;
+}

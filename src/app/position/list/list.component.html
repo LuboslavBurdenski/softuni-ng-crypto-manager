@@ -19,7 +19,7 @@
           >{{position.prfLossPerCent | number : '1.0-4' }}%</h1>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>Details</button>
+          <button mat-button (click)="portfolioCardClickDetails(position.symbol)">Details</button>
           <button mat-button (click)="portfolioCardClickTradingView(position.symbol)">TradingView
             <img style="width: 20px; height: 20px;"
               src="https://user-images.githubusercontent.com/5462382/34194692-9a517de4-e51f-11e7-8af9-46f9ea4cf555.png"></button>

@@ -5,8 +5,8 @@
                 <h3>Register</h3>
 
                 <mat-form-field class="full-width-input">
-                    <mat-label>First Name</mat-label>
-                    <input matInput placeholder="Username" name="username" ngModel required minlength="5"
+                    <mat-label>Username</mat-label>
+                    <input  matInput  placeholder="Username" name="username" ngModel required minlength="5"
                         pattern="[a-zA-Z0-9._]+" #username="ngModel">
                 </mat-form-field>
                 <mat-card class="alert" *ngIf='username.errors?.required && username.touched'>Username is required!

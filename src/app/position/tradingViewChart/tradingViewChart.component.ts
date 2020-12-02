@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 declare const TradingView;
@@ -7,12 +7,11 @@ declare const TradingView;
   templateUrl: './tradingViewChart.component.html',
   styleUrls: ['./tradingViewChart.component.css']
 })
-export class TradingViewChartComponent implements OnInit, AfterViewInit {
+export class TradingViewChartComponent implements AfterViewInit {
   symbol: String;
   constructor(private route: ActivatedRoute) {
-    this.symbol = `${this.route.snapshot.params.id}${'EUR'}`
+    this.symbol = `${this.route.snapshot.params.id}${'USD'}`
   }
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     new TradingView.widget(

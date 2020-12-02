@@ -9,18 +9,20 @@
     margin-top: 3%;
     margin-bottom: 3%;
 }
+
 .mat-form-field {
     font-size: 14px;
     width: 100%;
-   
 }
-.filter{
+
+.filter {
     margin-left: 7%;
     margin-right: 7%;
     margin-top: 1%;
     margin-bottom: 3%;
     align-items: stretch;
 }
+
 .example-card {
     margin-left: 50px;
 }
@@ -44,3 +46,6 @@ h1 {
     align-items: stretch;
 }
 
+button {
+    background-color: #21CE99 !important;
+}
