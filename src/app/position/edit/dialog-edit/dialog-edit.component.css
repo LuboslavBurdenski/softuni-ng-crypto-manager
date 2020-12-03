@@ -1,0 +1,26 @@
+.entire {
+    height: 100%;
+    width: 100%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+button {
+    width: 100%;
+    background-color: #21CE99 !important;
+}
+
+.alert {
+    background-color: #ff80ab;
+    color: rgb(23, 6, 39);
+}

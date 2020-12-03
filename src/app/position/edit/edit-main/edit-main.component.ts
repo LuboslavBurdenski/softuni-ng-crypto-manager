@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../create/dialog/dialog.component';
+import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
+
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  selector: 'app-edit-main',
+  templateUrl: './edit-main.component.html',
+  styleUrls: ['./edit-main.component.css']
 })
-export class EditComponent  {
+export class EditMainComponent  {
 
   constructor(public dialog: MatDialog) { }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(DialogEditComponent, {
       width: '350px',
       direction: "ltr",
       data : {
@@ -23,7 +24,7 @@ export class EditComponent  {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(`Dialog result: edit`);
     });
   }
 

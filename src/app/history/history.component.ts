@@ -2,19 +2,18 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { PositionCreationService } from '../position/position-creation.service';
 import { ExcelService } from './excel.service';
-import { UserService } from '../home/coins.service';
-import { Router } from '@angular/router';
 
 
-export interface PortfolioData {
+
+export interface HistoryData {
   id: string,
   symbol: string,
   entry: string,
-  current: number,
-  sum: string,
-  leverage: string,
-  positionSize: string,
+  sum: number,
   prtLoss: number,
   prtLossPerCent: string,
   change: string
@@ -29,29 +28,24 @@ export class HistoryComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['image', 'id', 'symbol', 'entry', 'current', 'sum', 'leverage', 'positionSize',
-    'prtLoss', 'prtLossPerCent', 'change'];
-  dataSource: MatTableDataSource<PortfolioData>;
+  displayedColumns: string[] = ['id', 'symbol', 'entry', 'sum', 'prtLoss', 'prtLossPerCent', 'change'];
+  dataSource: MatTableDataSource<HistoryData>;
   isClicked;
-  portfolioData = [{
-    id: '12', image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-    symbol: 'BTC', entry: '10000', current: -11000, sum: '1000', leverage: '10', positionSize: '10000',
-    prtLoss: 100, prtLossPerCent: '10', change: '50'
+  historyData = [{
+    id: '12',symbol: 'BTC', entry: '10000',sum: 1000,  prtLoss: 100, prtLossPerCent: '10', change: '50'
   },
   {
-    id: '12', image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-    symbol: 'BTC', entry: '10000', current: 11000, sum: '1000', leverage: '10', positionSize: '10000',
-    prtLoss: 0, prtLossPerCent: '10', change: '50'
-  },
-  {
-    id: '12', image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-    symbol: 'ETH', entry: '10000', current: 11000, sum: '1000', leverage: '10', positionSize: '10000',
-    prtLoss: -100, prtLossPerCent: '10', change: '50'
-  },];
+    id: '12',symbol: 'BTC', entry: '10000', sum: 1000, prtLoss: 0, prtLossPerCent: '10', change: '50'
+  }];
 
 
-  constructor(private userService: UserService, private excelService: ExcelService,private router: Router) {
-    this.dataSource = new MatTableDataSource(this.portfolioData);
+  constructor(private excelService: ExcelService, private positionService: PositionCreationService) {
+    this.positionService.getHistory().pipe(
+      map(data => data = data.positions),
+      tap(historicPositions => this.historyData = historicPositions)
+    )
+      .subscribe(() => console.log(this.historyData));
+    this.dataSource = new MatTableDataSource(this.historyData);
   }
 
   ngAfterViewInit() {
@@ -67,9 +61,10 @@ export class HistoryComponent implements AfterViewInit {
     }
   }
   exportAsXLSX(): void {
-    this.excelService.exportAsExcelFile(this.portfolioData, 'sample');
+    this.excelService.exportAsExcelFile(this.historyData, 'sample');
   }
-  
+
+
 
 }
 

@@ -24,9 +24,7 @@ export class ListComponent implements OnInit {
 
 
   constructor(private router: Router, private listPositions: PositionCreationService) {
-    //this.listPositions.getAllPositions().subscribe((data) => {this.positions = data; console.log(data);});
     this.positions = this.listPositions.getAllPositions();
-    console.log(this.positions);
   }
 
   ngOnInit() { }
@@ -41,23 +39,22 @@ export class ListComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const sub = new Subject();
+    // const sub = new Subject();
 
-    sub.next(1);
-    sub.subscribe(x => {
-      console.log('Subscriber A', x);
-    });
-    sub.next(2); // OUTPUT => Subscriber A 2
-    sub.subscribe(x => {
-      console.log('Subscriber B', x);
-    });
-    sub.next(3);
-    sub.subscribe(x => {
-      console.log('Subscriber C', x);
-    });
-    sub.next(4);
+    // sub.next(1);
+    // sub.subscribe(x => {
+    //   console.log('Subscriber A', x);
+    // });
+    // sub.next(2); // OUTPUT => Subscriber A 2
+    // sub.subscribe(x => {
+    //   console.log('Subscriber B', x);
+    // });
+    // sub.next(3);
+    // sub.subscribe(x => {
+    //   console.log('Subscriber C', x);
+    // });
+    // sub.next(4);
     
-
   }
 
 }
