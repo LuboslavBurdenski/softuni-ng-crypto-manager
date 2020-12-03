@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
 import { catchError, tap } from 'rxjs/operators';
 
-const baseURL = 'http://localhost:3000/api/';
+const baseURL = 'http://localhost:3000/api';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   registerService(data): Observable<any> {
-    return this.http.post(`${baseURL}/users/register`, data);
+    return this.http.post(`${baseURL}/users/register`, data, { withCredentials: true });
   }
 
   loginUserService(data): Observable<any> {
@@ -23,7 +23,7 @@ export class UserService {
   getUserProfile(): Observable<any> {
     return this.http.get(`${baseURL}/users/profile`, { withCredentials: true })
       .pipe(
-        tap(((user) => this.currentUser = user)),
+        tap(((user) =>{ this.currentUser = user})),
         catchError(() => { this.currentUser = null; return of(null); })
       );
   }

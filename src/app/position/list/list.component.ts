@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, interval, Observable, observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -18,17 +18,13 @@ export interface PortfolioData {
 })
 export class ListComponent implements OnInit {
   positions: Observable<any>;
-  data;
-  filtered;
-  emptyMatch: Boolean;
+ 
+  constructor(private router: Router, private listPositions: PositionCreationService) {}
 
-
-  constructor(private router: Router, private listPositions: PositionCreationService) {
-    this.positions = this.listPositions.getAllPositions();
+  ngOnInit() {
+    this.listPositions.getAllPositions();
+    this.positions = this.listPositions.returnAsObservable();
   }
-
-  ngOnInit() { }
-
   portfolioCardClickTradingView(symbol: String) {
     console.log(symbol);
     this.router.navigate(['position', 'chart', symbol.toUpperCase()])
@@ -38,23 +34,7 @@ export class ListComponent implements OnInit {
     this.router.navigate(['position', 'details', symbol.toUpperCase()])
   }
 
-  applyFilter(event: Event) {
-    // const sub = new Subject();
-
-    // sub.next(1);
-    // sub.subscribe(x => {
-    //   console.log('Subscriber A', x);
-    // });
-    // sub.next(2); // OUTPUT => Subscriber A 2
-    // sub.subscribe(x => {
-    //   console.log('Subscriber B', x);
-    // });
-    // sub.next(3);
-    // sub.subscribe(x => {
-    //   console.log('Subscriber C', x);
-    // });
-    // sub.next(4);
-    
+  ngOnDestroy(): void {
+    this.listPositions.stopExchangeUpdates();
   }
-
 }
