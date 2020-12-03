@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { interval, observable } from 'rxjs';
+import { Subject, interval, Observable, observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { PositionCreationService } from '../position-creation.service';
 
 export interface PortfolioData {
@@ -16,8 +17,11 @@ export interface PortfolioData {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  positions;
-  // dataSource = new MatTableDataSource(this.positions);
+  positions: Observable<any>;
+  data;
+  filtered;
+  emptyMatch: Boolean;
+
 
   constructor(private router: Router, private listPositions: PositionCreationService) {
     //this.listPositions.getAllPositions().subscribe((data) => {this.positions = data; console.log(data);});
@@ -27,14 +31,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() { }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
   portfolioCardClickTradingView(symbol: String) {
     console.log(symbol);
     this.router.navigate(['position', 'chart', symbol.toUpperCase()])
@@ -43,9 +39,25 @@ export class ListComponent implements OnInit {
     console.log(symbol);
     this.router.navigate(['position', 'details', symbol.toUpperCase()])
   }
-  // getTotalCost() {
-  //   return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
-  // }
 
+  applyFilter(event: Event) {
+    const sub = new Subject();
+
+    sub.next(1);
+    sub.subscribe(x => {
+      console.log('Subscriber A', x);
+    });
+    sub.next(2); // OUTPUT => Subscriber A 2
+    sub.subscribe(x => {
+      console.log('Subscriber B', x);
+    });
+    sub.next(3);
+    sub.subscribe(x => {
+      console.log('Subscriber C', x);
+    });
+    sub.next(4);
+    
+
+  }
 
 }

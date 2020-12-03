@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
@@ -10,10 +10,10 @@ import { PositionCreationService } from '../../position-creation.service';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent{
   isEdit: Boolean;
   route: String[] = this.router.url.split('/');
- 
+
   get selectedCoin() {
     return this.positionCreationService.selectedCoin;
   }
@@ -26,9 +26,8 @@ export class DialogComponent implements OnInit {
     if (this.route[1] === 'position' && this.route[2] === 'details') {
       this.isEdit = true
     };
-    console.log(this.data);
   }
-  ngOnInit(): void {}
+ 
   onSubmit(form) {
     let shares = Number(form.value.sum) / Number(form.value.entry);
     let id = this.selectedCoin.split('/')[0].toLowerCase();
@@ -44,6 +43,7 @@ export class DialogComponent implements OnInit {
       console.log(res)
     }, (e) => { console.log(e); });
   }
+  
   onEdit(editForm) {
     console.log(editForm.value);
   }

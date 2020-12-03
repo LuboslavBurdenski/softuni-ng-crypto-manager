@@ -17,7 +17,6 @@ export class HomeComponent {
   
   constructor( private userService: UserService, private positionCreationService: PositionCreationService) {
     this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; console.log(this.data); });
-   
   }
 
   addToPosition(e) {
