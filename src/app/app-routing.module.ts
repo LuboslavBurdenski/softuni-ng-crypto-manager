@@ -11,40 +11,78 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'home'
+    canActivateChild: [AuthGuard],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/home'
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        data: {
+         
+        }
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: {
+          isLogged: false
+        }
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: {
+          isLogged: false
+        }
+      },
+      {
+        path: 'history',
+        component: HistoryComponent,
+        data: {
+          isLogged: true
+        }
+      },
+      {
+        path: 'profile',
+        pathMatch: 'full',
+        data: {
+          isLogged: true
+        },
+        component: ProfileComponent
+      },
+    ]
   },
-  {
-    path: 'home',
-    pathMatch: 'full',
-    component: HomeComponent
-  },
-  {
-    path: 'login',
-    pathMatch: 'full',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    pathMatch: 'full',
-    component: RegisterComponent
-  },
-  {
-    path: 'history',
-    pathMatch: 'full',
-    component: HistoryComponent,
-    canActivate: [AuthGuard],
-    data:{
-      isLogged: true
-    }
-  },
-  {
-    path: 'profile',
-    pathMatch: 'full',
-    component: ProfileComponent
-  },
-];
 
+];
+// [{
+//   path: '',
+//   canActivateChild: [AuthGuard],
+//   children: [
+//     {
+//       path: '',
+//       pathMatch: 'full',
+//       redirectTo: '/home'
+//     },
+//     {
+//       path: 'home',
+//       component: HomeComponent,
+//       data: {
+//         title: 'HOME'
+//       }
+//     },
+//     {
+//       path: '**',
+//       component: NotFoundComponent,
+//       data: {
+//         title: '404'
+//       }
+//     }
+//   ]
+// },]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

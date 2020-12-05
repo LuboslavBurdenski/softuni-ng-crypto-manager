@@ -12,16 +12,26 @@ export interface Tile {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  tiles: Tile[] = [
-    { text: 'One', cols: 1, rows: 3, color: 'lightblue' },
-    { text: 'Two', cols: 3, rows: 4, color: 'lightgreen' },
-    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 1, rows: 2, color: '#DDBDF1' },
-    { text: 'Five', cols: 1, rows: 2, color: 'lightblue' },
-    { text: 'Six', cols: 1, rows: 2, color: 'lightgreen' },
-    { text: 'Seven', cols: 1, rows: 2, color: 'lightpink' },
-    
+ 
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    maintainAspectRatio: false,
+    responsive: true,
+    labels: 'Red',
+  };
+
+  public barChartLabels = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData = [
+    {data: [20,20,20,20,20,20,20,20,20,20,20,20,], label: 'INCOME BY MONTH'},
   ];
+
+  public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4', 'Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
+  public pieChartData = [120, 150, 180, 90, 120, 150, 180, 90];
+  public pieChartType = 'pie';
+
   constructor(private profileService: ProfileService) {
     this.profileService.userProfile().subscribe(resp =>{ console.log(resp)});
   }

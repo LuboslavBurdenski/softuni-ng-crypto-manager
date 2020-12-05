@@ -1,7 +1,7 @@
 <mat-card class='filter'>
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput #input>
+    <input matInput (keyUp)="applyFilter($event)" #input>
   </mat-form-field>
 </mat-card>
 
@@ -12,7 +12,7 @@
         <mat-card-header>
           <mat-card-title>{{position.symbol | uppercase}}</mat-card-title>
           <mat-card-subtitle  [ngStyle]="{'color': position.changeIn24h > 0 ? 'teal' : 'hotpink'}"
-          >{{position.changeIn24h | number : '1.0-4'}}% in 24h</mat-card-subtitle>
+          >{{position.changeIn24h | number : '1.4'}}% in 24h</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <h1  [ngStyle]="{'color': position.prfLossPerCent > 0 ? 'teal' : 'hotpink'}"

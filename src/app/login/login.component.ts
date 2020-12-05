@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
   isLoading: boolean = false;
   error: Error = null;
-  
+
   constructor(private userService: UserService, private router: Router) { }
 
   onSubmit(f: NgForm) {
@@ -21,7 +21,7 @@ export class LoginComponent {
     let form = f.value;
     this.userService.loginUserService(form).subscribe({
       next: (resp) => {
-        console.log(resp);
+        this.userService.currentUser = resp;
         this.isLoading = false;
         this.router.navigate(['/']);
       },

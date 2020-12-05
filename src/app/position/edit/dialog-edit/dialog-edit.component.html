@@ -3,30 +3,24 @@
 
     <mat-dialog-content class="mat-typography">
         <form #f="ngForm" class="my-form">
-
-            <mat-form-field class="full-width">
-                <mat-label>Entry price</mat-label>
-                <input disabled="true" type="number" matInput name="entry" [(ngModel)]="currentData.entry" #entry="ngModel">
-            </mat-form-field>
-
             <mat-form-field class="full-width">
                 <mat-label>Target profit</mat-label>
                 <input type="number" matInput placeholder="Target profit" name="target" ngModel #target='ngModel'>
             </mat-form-field>
-            <mat-card class="alert" *ngIf='(target.value < entry.value) && target.dirty'>Target profit must be higher
-                than the entry price!</mat-card>
+            <!-- TO DO !!! -->
+            <!-- <mat-card class="alert" *ngIf='(target.value < entry.value) && target.dirty'>Target profit must be higher
+                than the entry price!</mat-card> -->
 
             <mat-form-field class="full-width">
                 <mat-label>Stop loss</mat-label>
                 <input type="number" matInput placeholder="Stop loss" name="stop" ngModel #stop='ngModel'>
             </mat-form-field>
-            <mat-card class="alert" *ngIf='(stop.value > entry.value) && stop.dirty'>Stop loss must be lower than the entry price!</mat-card>
+            <!-- <mat-card class="alert" *ngIf='(stop.value > entry.value) && stop.dirty'>Stop loss must be lower than the entry price!</mat-card> -->
 
             <mat-form-field class="full-width">
                 <mat-label>Sum</mat-label>
                 <input disabled="true" type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum">
             </mat-form-field>
-
 
             <mat-form-field class="full-width">
                 <mat-label>Notes</mat-label>
@@ -37,8 +31,5 @@
         <button [disabled]='f.invalid' mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial
             (click)="onEdit(f)">Edit</button>
     </mat-dialog-content>
-
-    <mat-dialog-actions>
-    </mat-dialog-actions>
 
 </div>

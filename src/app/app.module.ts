@@ -16,7 +16,7 @@ import { PositionRoutingModule } from './position/position-routing.module';
 import { PositionModule } from './position/position.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
-
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -26,8 +26,6 @@ import { SharedModule } from './shared/shared.module';
     RegisterComponent,
     HistoryComponent,
     ProfileComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -39,10 +37,11 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     PositionRoutingModule,
     PositionModule,
-    SharedModule
+    SharedModule,
+    ChartsModule
   ],
 
-  exports: [AppRoutingModule, SharedModule],
+  exports: [AppRoutingModule, SharedModule, ChartsModule],
   providers: [ExcelService],
   bootstrap: [AppComponent],
 

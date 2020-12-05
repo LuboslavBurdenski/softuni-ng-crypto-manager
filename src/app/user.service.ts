@@ -10,7 +10,7 @@ const baseURL = 'http://localhost:3000/api';
 })
 export class UserService {
   currentUser;
-
+  
   constructor(private http: HttpClient) { }
   registerService(data): Observable<any> {
     return this.http.post(`${baseURL}/users/register`, data, { withCredentials: true });
@@ -23,13 +23,13 @@ export class UserService {
   getUserProfile(): Observable<any> {
     return this.http.get(`${baseURL}/users/profile`, { withCredentials: true })
       .pipe(
-        tap(((user) =>{ this.currentUser = user})),
+        tap(((user) => { this.currentUser = user })),
         catchError(() => { this.currentUser = null; return of(null); })
       );
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${baseURL}/users/logout`, { withCredentials: true }).pipe(
+    return this.http.get(`${baseURL}/users/logout`, { withCredentials: true }).pipe(
       tap(() => this.currentUser = null)
     );
   }

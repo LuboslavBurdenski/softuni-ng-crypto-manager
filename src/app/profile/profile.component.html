@@ -1,6 +1,69 @@
 <mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile class='grid' *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-        [style.background]="tile.color">
-        {{tile.text}}
+    <mat-grid-tile class='grid' colspan='1' rowspan='3' >
+        <div style="display: block">
+            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" width="300" height="300"></canvas>
+        </div>
     </mat-grid-tile>
+
+
+    <mat-grid-tile class='grid' colspan='3' rowspan='4' >
+        <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType" width="900" height="400">
+            </canvas>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile class='grid' colspan='1' rowspan='1'  >
+        <mat-card class='balance'>
+            <mat-card-content>
+                <h1> BALANCE</h1>
+            </mat-card-content>
+            <mat-card-title>1014.06</mat-card-title>
+        </mat-card>
+      
+    </mat-grid-tile>
+
+    <mat-grid-tile  class='grid' colspan='1' rowspan='2' >
+        <mat-card class='avg'>
+            <mat-card-content>
+                <h1>AVG. WIN RATE</h1>
+            </mat-card-content>
+            <mat-card-title>1014.06</mat-card-title>
+        </mat-card>
+     
+    </mat-grid-tile>
+
+    <mat-grid-tile class='grid' colspan='1' rowspan='2' >
+        <mat-card class='avg'>
+            <mat-card-content>
+                <h1>HIGHEST WIN</h1>
+            </mat-card-content>
+            <mat-card-title>1014.06</mat-card-title>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile class='grid' colspan='1' rowspan='2' >
+        <mat-card class='avg'>
+            <mat-card-content>
+                <h1>HIGHEST LOSS</h1>
+            </mat-card-content>
+            <mat-card-title>1014.06</mat-card-title>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile class='grid' colspan='1' rowspan='2' >
+        <mat-card class='avg'>
+            <mat-card-content>
+                <h1> MOST TRADED CRYPTOCURRENCY</h1>
+            </mat-card-content>
+            <mat-card-title>BTC</mat-card-title>
+        </mat-card>
+     
+    </mat-grid-tile>
+
 </mat-grid-list>
+
+
+
+

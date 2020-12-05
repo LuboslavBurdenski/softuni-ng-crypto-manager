@@ -43,6 +43,7 @@ export class PositionCreationService {
   }
 
   stopExchangeUpdates() {
+    this.subj = new BehaviorSubject([]);
     this.evs.close();
   }
   createPosition(data): Observable<any> {

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { UserService } from 'src/app/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,13 +12,19 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
-  loggedIn: boolean = true;
+  get isLogged(): boolean {
+    return !!this.userService.currentUser;
+  }
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
-    
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private userService: UserService, private router: Router) {
+  }
+  logout() {
+    console.log('LOGOUTTTTTT');
+    this.userService.logout().subscribe(() => this.router.navigate(['login']));
+  }
 
 }
