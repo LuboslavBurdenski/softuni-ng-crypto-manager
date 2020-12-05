@@ -31,6 +31,10 @@ button.rigth-btn {
     text-align: center;
 }
 
+.right-column{
+    text-align: right;
+}
+
 mat-card-content {
     margin-bottom: 10%;
     display: flex; 

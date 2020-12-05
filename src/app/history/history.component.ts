@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { PositionCreationService } from '../position/position-creation.service';
 import { ExcelService } from './excel.service';
-
-
+import { HistoryService } from './history.service';
 
 export interface HistoryData {
   id: string,
@@ -18,39 +17,56 @@ export interface HistoryData {
   prtLossPerCent: string,
   change: string
 }
-
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
 })
-export class HistoryComponent implements AfterViewInit {
+export class HistoryComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['id', 'symbol', 'entry', 'sum', 'prtLoss', 'prtLossPerCent', 'change'];
-  dataSource: MatTableDataSource<HistoryData>;
-  isClicked;
-  historyData = [{
-    id: '12',symbol: 'BTC', entry: '10000',sum: 1000,  prtLoss: 100, prtLossPerCent: '10', change: '50'
-  },
-  {
-    id: '12',symbol: 'BTC', entry: '10000', sum: 1000, prtLoss: 0, prtLossPerCent: '10', change: '50'
-  }];
+  displayedColumns: string[];
+  dataSource = new MatTableDataSource();
+  positions;
 
+  constructor(private excelService: ExcelService, private historyService: HistoryService) { }
 
-  constructor(private excelService: ExcelService, private positionService: PositionCreationService) {
-    this.positionService.getHistory().pipe(
-      map(data => data = data.positions),
-      tap(historicPositions => this.historyData = historicPositions)
-    )
-      .subscribe(() => console.log(this.historyData));
-    this.dataSource = new MatTableDataSource(this.historyData);
+  ngOnInit() {
+    this.historyService.getData(0, 1)
+      .subscribe(data => {
+        console.log(data);
+        this.positions = data.positions;
+        this.positions.length = data.total;
+        this.dataSource = new MatTableDataSource(this.positions);
+        this.dataSource.paginator = this.paginator;
+      }
+      );
   }
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  pageChanged(event) {
+    let pageIndex = event.pageIndex;
+    let pageSize = event.pageSize;
+    let previousIndex = event.previousPageIndex;
+    let previousSize = pageSize * pageIndex;
+
+    this.historyService
+      .getNextData((pageIndex).toString(), pageSize.toString())
+      .subscribe((res: any) => {
+        this.positions.length = previousSize;
+        this.positions.push(...res.positions);
+        this.positions.length = res.total;
+        this.dataSource = new MatTableDataSource(this.positions);
+        this.dataSource._updateChangeSubscription();
+        this.dataSource.paginator = this.paginator;
+      });
+
+    console.log(pageIndex);
+    console.log(previousIndex);
+    console.log(previousSize);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -60,8 +76,9 @@ export class HistoryComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
   exportAsXLSX(): void {
-    this.excelService.exportAsExcelFile(this.historyData, 'sample');
+    //   this.excelService.exportAsExcelFile(this.historyData, 'sample');
   }
 
 

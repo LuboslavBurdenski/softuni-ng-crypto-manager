@@ -19,12 +19,13 @@ export interface PortfolioData {
 export class ListComponent implements OnInit, OnDestroy {
   positions: Observable<any>;
 
-  constructor(private router: Router, private listPositions: PositionCreationService) { }
-
-  ngOnInit() {
+  constructor(private router: Router, private listPositions: PositionCreationService) {
     this.listPositions.getAllPositions();
     this.positions = this.listPositions.returnAsObservable();
   }
+
+  ngOnInit() {}
+  
   portfolioCardClickTradingView(symbol: String) {
     console.log(symbol);
     this.router.navigate(['position', 'chart', symbol.toUpperCase()])
@@ -34,11 +35,10 @@ export class ListComponent implements OnInit, OnDestroy {
     this.router.navigate(['position', 'details', symbol.toUpperCase()])
   }
   applyFilter(event: Event) {
-   
+
   }
   ngOnDestroy(): void {
     console.log('OUT');
-    
     this.listPositions.stopExchangeUpdates();
   }
 }
