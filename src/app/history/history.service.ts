@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HistoryService {
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) {}
 
   getData(offset, limit): Observable<any> {
     let params = new HttpParams();

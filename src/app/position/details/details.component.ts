@@ -31,17 +31,17 @@ export class DetailsComponent {
   dataSource;
   DETAILS_DATA;
   constructor(private positionCreationService: PositionCreationService, private router: Router) {
-    this.detailsMaking().subscribe();
+    this.detailsMaking().subscribe(data => this.positionCreationService.detailsForEdit = data);
   }
 
   detailsMaking() {
     return this.positionCreationService.getDetailForPosition(this.router.url.split('/')[3])
       .pipe(
         tap(data => {
-          if(data['stop'] == 0){
+          if (data['stop'] == 0) {
             data['stop'] = '-';
           }
-          if(data['target'] == 0){
+          if (data['target'] == 0) {
             data['target'] = '-';
           }
           this.DETAILS_DATA = [

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PositionCreationService } from '../../position-creation.service';
 import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
 
 
@@ -8,19 +9,25 @@ import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
   templateUrl: './edit-main.component.html',
   styleUrls: ['./edit-main.component.css']
 })
-export class EditMainComponent  {
-
-  constructor(public dialog: MatDialog) { }
+export class EditMainComponent {
+  @Input() details
+  get detailsForEdit() {
+    return this.positionCreationService.detailsForEdit;
+  }
+  constructor(public dialog: MatDialog, private positionCreationService: PositionCreationService) {
+    console.log(this.detailsForEdit);
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogEditComponent, {
       width: '350px',
       direction: "ltr",
-      data : {
-        entry: 5654.56,
-        target: 10000.00,
-        stop: 5000,
-        sum: 5000
+      data: {
+        entry: this.detailsForEdit.entry,
+        target: this.detailsForEdit.target,
+        stop: this.detailsForEdit.stop,
+        sum: this.detailsForEdit.sum,
+        id: this.detailsForEdit._id
       },
     });
     dialogRef.afterClosed().subscribe(result => {

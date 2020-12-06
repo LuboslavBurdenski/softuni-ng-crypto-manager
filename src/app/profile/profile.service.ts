@@ -10,6 +10,6 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   userProfile() {
-    return this.http.get('http://localhost:3000/api/users/profile', {withCredentials: true});
+    return this.http.get('http://localhost:3000/api/position/statistics/month', {withCredentials: true});
   }
 }

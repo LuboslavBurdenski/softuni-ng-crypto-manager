@@ -9,6 +9,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class PositionCreationService {
   selectedCoin: String;
   evs: EventSource;
+  detailsForEdit;
+
   public subj = new BehaviorSubject([]);
 
   constructor(public http: HttpClient) { }

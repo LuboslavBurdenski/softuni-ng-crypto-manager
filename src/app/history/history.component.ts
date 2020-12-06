@@ -29,6 +29,7 @@ export class HistoryComponent implements AfterViewInit, OnInit {
   displayedColumns: string[];
   dataSource = new MatTableDataSource();
   positions;
+  private currentPage;
 
   constructor(private excelService: ExcelService, private historyService: HistoryService) { }
 
@@ -57,7 +58,8 @@ export class HistoryComponent implements AfterViewInit, OnInit {
       .getNextData((pageIndex).toString(), pageSize.toString())
       .subscribe((res: any) => {
         this.positions.length = previousSize;
-        this.positions.push(...res.positions);
+        this.currentPage = res.positions;
+        this.positions.push(...this.currentPage);
         this.positions.length = res.total;
         this.dataSource = new MatTableDataSource(this.positions);
         this.dataSource._updateChangeSubscription();
@@ -78,7 +80,7 @@ export class HistoryComponent implements AfterViewInit, OnInit {
   }
 
   exportAsXLSX(): void {
-    //   this.excelService.exportAsExcelFile(this.historyData, 'sample');
+      this.excelService.exportAsExcelFile(this.currentPage, 'sample');
   }
 
 

@@ -21,42 +21,42 @@
 
       <ng-container matColumnDef="symbol">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Coin </th>
-        <td mat-cell *matCellDef="let row"> {{row.symbol | uppercase}} </td>
+        <td mat-cell *matCellDef="let row"> {{row?.symbol | uppercase}} </td>
       </ng-container>
 
       <ng-container matColumnDef="entry">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Entry price </th>
-        <td mat-cell *matCellDef="let row"> {{row.entry | number : '1.0-4'}} </td>
+        <td mat-cell *matCellDef="let row"> {{row?.entry | number : '1.0-4'}} </td>
       </ng-container> 
 
       <ng-container matColumnDef="close">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Closing price </th>
-        <td mat-cell *matCellDef="let row"> {{row.currentPrice | number : '1.0-4'}} </td>
+        <td mat-cell *matCellDef="let row"> {{row?.currentPrice | number : '1.0-4'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="sum">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Sum </th>
-        <td mat-cell *matCellDef="let row"> {{row.sum | number : '1.0-4'}} </td>
+        <td mat-cell *matCellDef="let row"> {{row?.sum | number : '1.0-4'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="target">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Target profit </th>
-        <td mat-cell *matCellDef="let row"> {{row.target | number : '1.0-4'}} </td>
+        <td mat-cell *matCellDef="let row"> {{row?.target | number : '1.0-4'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="stop">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Stop loss</th>
-        <td mat-cell *matCellDef="let row"> {{row.stop | number : '1.0-4'}} </td>
+        <td mat-cell *matCellDef="let row"> {{row?.stop | number : '1.0-4'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="prfLoss">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Prt/Loss </th>
-        <td mat-cell *matCellDef="let row"> {{row.prfLoss | number : '1.0-4'}} </td>
+        <td mat-cell *matCellDef="let row"> {{row?.prfLoss | number : '1.0-4'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="prfLossPerCent">
         <th  class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Prt/Loss % </th>
-        <td mat-cell *matCellDef="let row">{{row.prfLossPerCent | number : '1.0-4'}}% </td>
+        <td mat-cell *matCellDef="let row">{{row?.prfLossPerCent | number : '1.0-4'}}% </td>
       </ng-container>
 
       <tr class="mat-header" mat-header-row *matHeaderRowDef="['id', 'symbol', 'entry', 'close', 'sum', 'target', 'stop', 'prfLoss', 'prfLossPerCent']"></tr>
