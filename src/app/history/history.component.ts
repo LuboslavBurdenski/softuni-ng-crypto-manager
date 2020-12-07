@@ -31,24 +31,22 @@ export class HistoryComponent implements AfterViewInit, OnInit {
 
   constructor(private excelService: ExcelService, private historyService: HistoryService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ngAfterViewInit() {
     this.historyService.getData(0, 10)
       .subscribe(data => {
         this.positions = data.positions;
         this.positions.length = data.total;
         this.dataSource = new MatTableDataSource(this.positions);
-        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        this.dataReady = true;
-
-      }
-      );
+        this.dataReady = true
+        setTimeout(() => {
+          this.dataSource.sort = this.sort;
+        }, 0);
+      });
   }
-  ngAfterViewInit() {
-
-
-
-  }
+  
   pageChanged(event) {
     let pageIndex = event.pageIndex;
     let pageSize = event.pageSize;

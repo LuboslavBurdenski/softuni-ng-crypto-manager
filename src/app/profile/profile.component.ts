@@ -30,8 +30,8 @@ export class ProfileComponent implements OnInit {
     { data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'INCOME BY MONTH', },
   ];
 
-  public pieChartLabels = [];
-  public pieChartData = [];
+  public pieChartLabels = ['No positions'];
+  public pieChartData = [0];
   public pieChartType = 'pie';
 
   dataBarChart: Boolean = false;
@@ -61,10 +61,15 @@ export class ProfileComponent implements OnInit {
     });
     this.dataBarChart = true;
   }
-  renderPieChart(resp) {
-    for (let label in resp) {
-      this.pieChartLabels.push(label.toLocaleUpperCase());
-      this.pieChartData.push(Number(resp[label].toFixed(2)));
+  renderPieChart(resp: [String, any]) {
+    if (resp.length > 0) {
+      this.pieChartLabels = [];
+      this.pieChartData = [];
+    }
+    for (let obj of resp) {
+      let value: any[] = Object.entries(obj);
+      this.pieChartLabels.push(value[0][0].toLocaleUpperCase());
+      this.pieChartData.push(Number(value[0][1].toFixed(2)));
     }
     this.dataPieChart = true;
   }

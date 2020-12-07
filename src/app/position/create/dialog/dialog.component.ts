@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
+import { UserService } from 'src/app/user.service';
 import { PositionCreationService } from '../../position-creation.service';
 import { MainComponent } from '../main/main.component';
 
@@ -15,13 +16,17 @@ export class DialogComponent {
   get selectedCoin() {
     return this.positionCreationService.selectedCoin;
   }
-
+  get currentUserBalance(){
+    return this.userService.currentUser.balance;
+  }
   constructor(
     private positionCreationService: PositionCreationService,
+    private userService: UserService,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
+
   
   onSubmit(form) {
     let shares = Number(form.value.sum) / Number(form.value.entry);

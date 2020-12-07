@@ -12,8 +12,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  balance: Number;
   get isLogged(): boolean {
     return !!this.userService.currentUser;
+  }
+  get currentUser() {
+    return this.userService.currentUser;
   }
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -21,6 +25,7 @@ export class NavigationComponent {
       shareReplay()
     );
   constructor(private breakpointObserver: BreakpointObserver, private userService: UserService, private router: Router) {
+   
   }
   logout() {
     console.log('LOGOUTTTTTT');

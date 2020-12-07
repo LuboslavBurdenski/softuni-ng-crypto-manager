@@ -11,7 +11,7 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 
-      <ng-container matColumnDef="id">
+      <ng-container matColumnDef="coinId">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef  mat-sort-header> ID </th>
         <td  mat-cell *matCellDef="let row" > {{row?.coinId | uppercase}} </td>
       </ng-container>
@@ -26,7 +26,7 @@
         <td mat-cell *matCellDef="let row"> {{row?.entry | number : '1.0-4'}} </td>
       </ng-container> 
 
-      <ng-container matColumnDef="close">
+      <ng-container matColumnDef="currentPrice">
         <th class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Closing price </th>
         <td mat-cell *matCellDef="let row"> {{row?.currentPrice | number : '1.0-4'}} </td>
       </ng-container>
@@ -56,13 +56,13 @@
         <td mat-cell *matCellDef="let row">{{row?.prfLossPerCent | number : '1.0-4'}}% </td>
       </ng-container>
 
-      <tr class="mat-header" mat-header-row *matHeaderRowDef="['id', 'symbol', 'entry', 'close', 'sum', 'target', 'stop', 'prfLoss', 'prfLossPerCent']"></tr>
+      <tr class="mat-header" mat-header-row *matHeaderRowDef="['coinId', 'symbol', 'entry', 'currentPrice', 'sum', 'target', 'stop', 'prfLoss', 'prfLossPerCent']"></tr>
       <tr mat-row 
-        *matRowDef="let row; columns: ['id', 'symbol', 'entry', 'close', 'sum', 'target', 'stop', 'prfLoss', 'prfLossPerCent']">
+        *matRowDef="let row; columns: ['coinId', 'symbol', 'entry', 'currentPrice', 'sum', 'target', 'stop', 'prfLoss', 'prfLossPerCent']">
       </tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="9">No data matching the filter "{{input.value}}"</td>
+        <td class="mat-cell" colspan="9">No data provided</td>
       </tr>
 
     </table>

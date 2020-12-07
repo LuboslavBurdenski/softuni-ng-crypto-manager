@@ -18,5 +18,10 @@ mat-grid-list {
     justify-items: center;
     justify-content: center;
     text-align: center;
-
+}
+mat-card-content{
+    margin-top: 100%;
+    justify-items: center;
+    justify-content: center;
+    text-align: center;
 }

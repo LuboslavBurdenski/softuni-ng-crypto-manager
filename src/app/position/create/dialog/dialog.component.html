@@ -29,7 +29,8 @@
                 <input type="number" matInput placeholder="Sum" name="sum" required ngModel
                     #sum='ngModel'>
             </mat-form-field>
-
+            <mat-card class="alert" *ngIf='!sum.valid && sum.touched'>Sum is required!</mat-card>
+            <mat-card class="alert" *ngIf='(sum.value > currentUserBalance) && sum.dirty'>Sum can't be higher than your account balance!</mat-card>
 
             <mat-form-field class="full-width">
                 <mat-label>Notes</mat-label>
