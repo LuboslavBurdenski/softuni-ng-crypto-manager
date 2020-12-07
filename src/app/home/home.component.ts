@@ -14,13 +14,16 @@ export class HomeComponent {
   filtered;
   emptyMatch: Boolean;
   selectedCoin;
-  
-  constructor( private userService: UserService, private positionCreationService: PositionCreationService) {
-    this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; console.log(this.data); });
+
+  constructor(private userService: UserService, private positionCreationService: PositionCreationService) {
+    this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; });
+  }
+
+  get isThereSelectedCoin() {
+    return !!this.positionCreationService.selectedCoin;
   }
 
   addToPosition(e) {
-    console.log(e.viewValue);
     this.positionCreationService.selectedCoin = e.viewValue;
   }
 

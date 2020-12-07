@@ -34,7 +34,6 @@ td, th {
 
 th {
     font-weight: bold;
-    
 }
 
 table tr.mat-row {
@@ -52,9 +51,14 @@ img {
     height: 30px;
 }
 
-.w-75{
+.w-75 {
     width: 75px;
 }
-.th-center{
+
+.th-center {
     text-align: center;
+}
+
+button {
+    background-color: #21CE99 !important;
 }

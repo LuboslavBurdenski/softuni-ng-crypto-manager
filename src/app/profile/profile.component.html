@@ -1,6 +1,6 @@
 <mat-grid-list cols="4" rowHeight="100px">
     <mat-grid-tile class='grid' colspan='1' rowspan='3'>
-        <div style="display: block">
+        <div *ngIf="dataPieChart" style="display: block">
             <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" width="300"
                 height="300"></canvas>
         </div>
@@ -8,7 +8,7 @@
 
 
     <mat-grid-tile class='grid' colspan='3' rowspan='4'>
-        <div *ngIf="dataHasValue" style="display: block">
+        <div *ngIf="dataBarChart" style="display: block">
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [colors]="barChartColors"
                 [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" width="900"
                 height="400">

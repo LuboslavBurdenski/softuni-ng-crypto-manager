@@ -10,6 +10,7 @@ mat-grid-list {
     justify-items: center;
     justify-content: center;
     text-align: center;
+   
 }
 .avg{
     width: 75%;
@@ -17,4 +18,5 @@ mat-grid-list {
     justify-items: center;
     justify-content: center;
     text-align: center;
+
 }

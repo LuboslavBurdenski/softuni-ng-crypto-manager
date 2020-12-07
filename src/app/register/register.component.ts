@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { rePasswordValidatorFactory } from '../shared/validators';
 
 @Component({
   selector: 'app-register',
@@ -9,27 +10,41 @@ import { UserService } from '../user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  form: FormGroup;
   currencies: string[] = ['eur', 'usd'];
-  isLoading: boolean = true;
-  error: Error = null;
-  
-  constructor(private userService: UserService, private router: Router) { }
+ 
+  error: Error;
+  usernamePattern = "[a-zA-Z0-9._]+";
+  emailPattern = "[A-Za-z0-9._]+@[a-z0-9]+\.[a-z]{2,4}";
 
-  onSubmit(f: NgForm) {
-    console.log(f.value);
-    this.isLoading = true;
-    let form = f.value;
-    this.userService.registerService(form).subscribe({
-      next: () => {
-        this.isLoading = false;
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
+    const passwordControl = this.fb.control('', [Validators.required, Validators.minLength(5)]);
+    this.form = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(5), Validators.pattern(this.usernamePattern)]],
+      email: ['', [Validators.required]],
+      balance: ['', Validators.required],
+      password: passwordControl,
+      rePassword: ['', [Validators.required, Validators.minLength(5), rePasswordValidatorFactory(passwordControl)]]
+    });
+  }
+  onSubmit(): void {
+    const data = this.form.value;
+  
+    console.log(data);
+    this.userService.registerService(data).subscribe({
+      next: (resp) => {
+        this.userService.currentUser = resp;
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.isLoading = false;
+      
         this.error = err.error.message;
         console.error(err);
       }
     });
   }
-
 }

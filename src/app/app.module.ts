@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HistoryComponent } from './history/history.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from "@angular/forms";
+import { FormsModule,  ReactiveFormsModule  } from "@angular/forms";
 import { MaterialModule } from './material/material.module';
 import { ExcelService } from '../app/history/excel.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,7 +38,8 @@ import { ChartsModule } from 'ng2-charts';
     PositionRoutingModule,
     PositionModule,
     SharedModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule 
   ],
 
   exports: [AppRoutingModule, SharedModule, ChartsModule],

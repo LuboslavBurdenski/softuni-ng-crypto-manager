@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { zip } from 'rxjs';
 import { ProfileService } from './profile.service';
 export interface Tile {
   color: string;
@@ -25,34 +26,47 @@ export class ProfileComponent implements OnInit {
     "July", "August", "September", "October", "November", "December"];
   public barChartType = 'bar';
   public barChartLegend = false;
-  public barChartData;
+  public barChartData = [
+    { data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'INCOME BY MONTH', },
+  ];
 
-  public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4', 'Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
-  public pieChartData = [120, 150, 180, 90, 120, 150, 180, 90];
+  public pieChartLabels = [];
+  public pieChartData = [];
   public pieChartType = 'pie';
-  dataHasValue: Boolean = false;
 
+  dataBarChart: Boolean = false;
+  dataPieChart: Boolean = false;
+  groupedResponse;
   constructor(private profileService: ProfileService) {
-    this.barChartData = [
-      { data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'INCOME BY MONTH',  },
-    ];
-    this.profileService.userProfile().subscribe((resp: Array<any>) => {
-      resp.forEach((month: Object, i: Number) => {
-        let monthIndex = Number(month['monthValue']) - 1;
-        this.barChartData[0].data[monthIndex] = month['avgValue'];
-      })
-      this.barChartData[0].data.forEach((value, i) => {
-        if (value > 0) {
-          this.barChartColors[0].backgroundColor.push('#21CE99')
-        } else {
-          this.barChartColors[0].backgroundColor.push('hotpink');
-        }
-      });
-      this.dataHasValue = true;
-    })
+    this.groupedResponse = zip(this.profileService.barChartProfile(), this.profileService.pieChartProfile());
   }
 
   ngOnInit(): void {
+    this.groupedResponse.subscribe(resp => {
+      this.renderBarChart(resp[0]);
+      this.renderPieChart(resp[1]);
+    })
+  }
+  renderBarChart(resp: Array<any>) {
+    resp.forEach((month: Object, i: Number) => {
+      let monthIndex = Number(month['monthValue']) - 1;
+      this.barChartData[0].data[monthIndex] = month['avgValue'];
+    })
+    this.barChartData[0].data.forEach((value, i) => {
+      if (value > 0) {
+        this.barChartColors[0].backgroundColor.push('#21CE99')
+      } else {
+        this.barChartColors[0].backgroundColor.push('hotpink');
+      }
+    });
+    this.dataBarChart = true;
+  }
+  renderPieChart(resp) {
+    for (let label in resp) {
+      this.pieChartLabels.push(label.toLocaleUpperCase());
+      this.pieChartData.push(Number(resp[label].toFixed(2)));
+    }
+    this.dataPieChart = true;
   }
 
 

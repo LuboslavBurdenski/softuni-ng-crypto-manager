@@ -1,67 +1,74 @@
 <div class="signup-content">
     <mat-card class="my-card">
         <mat-card-content>
-            <form class="my-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <form class="my-form" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <h3>Register</h3>
-
                 <mat-form-field class="full-width-input">
                     <mat-label>Username</mat-label>
-                    <input  matInput  placeholder="Username" name="username" ngModel required minlength="5"
-                        pattern="[a-zA-Z0-9._]+" #username="ngModel">
+                    <input matInput type="text" name="username" id="username" placeholder="Username"
+                        formControlName="username">
                 </mat-form-field>
-                <mat-card class="alert" *ngIf='username.errors?.required && username.touched'>Username is required!
+                <mat-card *ngIf="form.get('username').touched && form.get('username').errors?.required" class="alert">
+                    Username is required!
                 </mat-card>
-                <mat-card class="alert" *ngIf='username.errors?.minlength && username.dirty'>Username must be
-                    minimum 5
-                    at least characters!</mat-card>
-                <mat-card class="alert" *ngIf='username.errors?.pattern && username.dirty'>Username must contain
-                    only
-                    latin letters and digits, "." and "_"!</mat-card>
-
+                <mat-card *ngIf="form.get('username').touched && form.get('username').errors?.minlength" class="alert">
+                    Username must be at least 5 characters!
+                </mat-card>
+                <mat-card class="alert" *ngIf="form.get('username').errors?.pattern && form.get('username').dirty">
+                    Username must contain only latin letters and digits, "." and "_"!</mat-card>
 
                 <mat-form-field class="full-width-input">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email" name="email" ngModel required email #email="ngModel">
+                    <input matInput placeholder="Email" type="email" name="email" id="email" formControlName="email">
                 </mat-form-field>
-                <mat-card class="alert" *ngIf='email.errors?.required && email.touched'>Email is required!
+                <mat-card class="alert" *ngIf="form.get('email').touched && form.get('email').errors?.required">Email is
+                    required!</mat-card>
+                <mat-card class="alert" *ngIf="form.get('email').touched && form.get('email').errors?.pattern">Email
+                    must
+                    be in a valid
+                    form! Email must contain only latin letters and digits, "." and "_"! /John.15_Johnson@gmail.com/
                 </mat-card>
-                <mat-card class="alert" *ngIf='email.errors?.email && email.dirty'>Email must be in a valid
-                    form! /yourUsername@mail.com/
-                </mat-card>
-
-                <!-- <mat-form-field appearance="fill">
-                    <mat-label>Select main currency*</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let currency of currencies" [value]="currency" #selected>
-
-                            {{currency | uppercase}}
-
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
 
                 <mat-form-field class="full-width-input">
                     <mat-label>Account balance</mat-label>
-                    <input type="number" matInput placeholder="Account balance *" name="balance" ngModel required #balance="ngModel">
+                    <input matInput type="number" name="balance" id="balance" placeholder="Account balance"
+                        formControlName="balance">
                 </mat-form-field>
-                <mat-card class="alert" *ngIf='balance.errors?.required && balance.touched'>Account balance is required!
+                <mat-card class="alert"
+                    *ngIf="form.get('balance').errors?.required && form.get('balance').errors?.touched">Account balance
+                    is required!
                 </mat-card>
+
                 <mat-form-field class="full-width-input">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" placeholder="Password" name="password" ngModel required #password="ngModel">
+                    <input matInput type="password" name="password" id="password" placeholder="*****"
+                        formControlName="password">
                 </mat-form-field>
+                <mat-card *ngIf="form.get('password').touched && form.get('password').errors?.required" class="alert">
+                    Password is required!
+                </mat-card>
+                <mat-card *ngIf="form.get('password').touched && form.get('password').errors?.minlength" class="alert">
+                    Password must be at least 5 characters!
+                </mat-card>
+
 
                 <mat-form-field class="full-width-input">
                     <mat-label>Repeat password</mat-label>
-                    <input matInput type="password" placeholder="Password" name="repeatPassword" ngModel required
-                        #repeatPassword="ngModel">
+                    <input matInput type="password" name="rePassword" id="rePassword" placeholder="*****"
+                        formControlName="rePassword">
                 </mat-form-field>
+                <mat-card *ngIf="form.get('rePassword').touched && form.get('rePassword').errors?.required"
+                    class="alert">
+                    Repeat Password is required!</mat-card>
+                <mat-card *ngIf="form.get('rePassword').touched && form.get('rePassword').errors?.rePasswordValidator"
+                    class="alert">Repeat password doesn't match password!</mat-card>
+
                 <mat-card class="alert" *ngIf='!!error'>{{error}}</mat-card>
 
                 <mat-card-actions>
-                    <button [disabled]='f.invalid' mat-raised-button color="accent" [mat-dialog-close]="false"
-                        cdkFocusInitial (click)="onSubmit(f)">REGISTER</button>
+                    <button mat-raised-button color="accent" [disabled]="form.invalid">Create Account</button>
                 </mat-card-actions>
+
             </form>
         </mat-card-content>
     </mat-card>

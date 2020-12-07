@@ -17,16 +17,15 @@ export class AuthGuard implements CanActivateChild {
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     let stream$: Observable<any | null>;
     if (this.userService.currentUser === undefined) {
-      console.log(this.userService.currentUser );
+     
       stream$ = this.userService.getUserProfile();
      
     } else {
       stream$ = of(this.userService.currentUser);
     }
-
     return stream$.pipe(
       map((user) => {
-        console.log(user);
+       
         const isLoggedFromData = childRoute.data.isLogged;
         return typeof isLoggedFromData !== 'boolean' || isLoggedFromData === !!user;
       }),

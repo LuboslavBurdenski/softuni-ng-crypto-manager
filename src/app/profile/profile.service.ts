@@ -9,7 +9,12 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  userProfile() {
-    return this.http.get('http://localhost:3000/api/position/statistics/month', {withCredentials: true});
+  barChartProfile() {
+    return this.http.get('http://localhost:3000/api/users/statistics/month', {withCredentials: true});
   }
+  pieChartProfile(){
+    return this.http.get('http://localhost:3000/api/users/statistics/segment', {withCredentials: true});
+  }
+
+
 }

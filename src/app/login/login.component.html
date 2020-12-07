@@ -8,17 +8,21 @@
             <form #f='ngForm' (ngSubmit)='onSubmit(f)'>
                 <mat-form-field class="full-width-input">
                     <input matInput placeholder="Username" name='username' ngModel #username='ngModel' required>
-                    <!-- <mat-error *ngIf="isFieldInvalid('userName')">
-              Please inform your user name
-            </mat-error> -->
+                    <mat-card class="alert" *ngIf='username.errors?.required && username.touched'>Username is required!
+                    </mat-card>
                 </mat-form-field>
                 <mat-form-field class="full-width-input">
                     <input matInput type="password" placeholder="Password" name='password' ngModel #password='ngModel'
-                        required>
-                    <!-- <mat-error *ngIf="isFieldInvalid('userName')">
-              Please inform your password
-            </mat-error> -->
+                        required minlength="5">
                 </mat-form-field>
+                <mat-card class="alert" *ngIf='password.errors?.required && password.touched'>Password is required!
+                </mat-card>
+                <mat-card class="alert" *ngIf='password.errors?.minlength && password.touched'>Password must be
+                    minimum 5 symbols!
+                </mat-card>
+                <mat-card class="alert" *ngIf='error'>
+                    {{error}}
+                </mat-card>
                 <button mat-raised-button color="accent">Login</button>
             </form>
         </mat-card-content>

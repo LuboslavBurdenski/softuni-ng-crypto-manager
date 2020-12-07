@@ -21,9 +21,20 @@
   top: 0;
   z-index: 1;
   text-align: center;
-  background-color:#1E272C !important;
+  background-color: #1E272C !important;
 }
 
 a {
   text-align: absolute;
+}
+
+.active {
+  background-color: #21CE99 !important;
+}
+
+.balance {
+  margin-left: 80%;
+  height: 40%;
+  width: 50%;
+  background-color: #21CE99;
 }
