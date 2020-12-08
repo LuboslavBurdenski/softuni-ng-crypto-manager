@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogEditComponent } from './dialog-edit/dialog-edit.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule } from '@angular/forms';
-import { EditMainComponent } from './edit-main/edit-main.component';
+import { CloseMainComponent } from './close-main/close-main.component';
+import { DialogCloseComponent } from './dialog-close/dialog-close.component';
+
 
 
 @NgModule({
-  declarations: [DialogEditComponent, EditMainComponent],
-  exports: [EditMainComponent],
+  declarations: [CloseMainComponent, DialogCloseComponent],
+  exports: [CloseMainComponent],
   imports: [
     CommonModule,
     RouterModule,

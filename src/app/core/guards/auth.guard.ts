@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateChild } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { UserService } from 'src/app/user.service';
+import { AuthService } from 'src/app/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +10,18 @@ import { UserService } from 'src/app/user.service';
 export class AuthGuard implements CanActivateChild {
 
   constructor(
-    private userService: UserService,
+    private auth: AuthService,
     private router: Router
   ) { }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     let stream$: Observable<any | null>;
-    if (this.userService.currentUser === undefined) {
+    if (this.auth.currentUser === undefined) {
      
-      stream$ = this.userService.getUserProfile();
+      stream$ = this.auth.getUserProfile();
      
     } else {
-      stream$ = of(this.userService.currentUser);
+      stream$ = of(this.auth.currentUser);
     }
     return stream$.pipe(
       map((user) => {

@@ -8,7 +8,7 @@
 <div class="container">
   <mat-card class="example-card">
     <mat-card-content class="grid">
-      <mat-card class="example-card-two" *ngFor="let position of positions | async">
+      <mat-card class="example-card-two" *ngFor="let position of positions">
         <mat-card-header>
           <mat-card-title>{{position.symbol | uppercase}}</mat-card-title>
           <mat-card-subtitle  [ngStyle]="{'color': position.changeIn24h > 0 ? 'teal' : 'hotpink'}"

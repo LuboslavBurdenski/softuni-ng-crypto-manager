@@ -41,7 +41,6 @@ import { ChartsModule } from 'ng2-charts';
     ChartsModule,
     ReactiveFormsModule 
   ],
-
   exports: [AppRoutingModule, SharedModule, ChartsModule],
   providers: [ExcelService],
   bootstrap: [AppComponent],

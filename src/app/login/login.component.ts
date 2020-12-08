@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -13,15 +13,15 @@ export class LoginComponent {
   isLoading: boolean = false;
   error: Error = null;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   onSubmit(f: NgForm) {
     console.log(f.value);
     this.isLoading = true;
     let form = f.value;
-    this.userService.loginUserService(form).subscribe({
+    this.auth.loginUserService(form).subscribe({
       next: (resp) => {
-        this.userService.currentUser = resp;
+        this.auth.currentUser = resp;
         this.isLoading = false;
         this.router.navigate(['/']);
       },

@@ -8,9 +8,9 @@
             <form #f='ngForm' (ngSubmit)='onSubmit(f)'>
                 <mat-form-field class="full-width-input">
                     <input matInput placeholder="Username" name='username' ngModel #username='ngModel' required>
-                    <mat-card class="alert" *ngIf='username.errors?.required && username.touched'>Username is required!
-                    </mat-card>
                 </mat-form-field>
+                <mat-card class="alert" *ngIf='username.errors?.required && username.touched'>Username is required!
+                </mat-card>
                 <mat-form-field class="full-width-input">
                     <input matInput type="password" placeholder="Password" name='password' ngModel #password='ngModel'
                         required minlength="5">

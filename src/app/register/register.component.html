@@ -35,7 +35,7 @@
                         formControlName="balance">
                 </mat-form-field>
                 <mat-card class="alert"
-                    *ngIf="form.get('balance').errors?.required && form.get('balance').errors?.touched">Account balance
+                    *ngIf="form.get('balance').errors?.required && form.get('balance').touched">Account balance
                     is required!
                 </mat-card>
 

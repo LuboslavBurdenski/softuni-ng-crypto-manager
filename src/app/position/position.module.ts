@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TradingViewChartComponent } from './tradingViewChart/tradingViewChart.component';
@@ -9,9 +10,10 @@ import { DetailsComponent } from './details/details.component';
 import { EditModule } from './edit/edit.module';
 
 
+
 @NgModule({
   declarations: [TradingViewChartComponent, ListComponent, DetailsComponent],
-  exports: [TradingViewChartComponent, CreateModule,EditModule, DetailsComponent],
+  exports: [TradingViewChartComponent, CreateModule, EditModule, DetailsComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -19,6 +21,6 @@ import { EditModule } from './edit/edit.module';
     CreateModule,
     EditModule
   ],
- 
+
 })
 export class PositionModule { }

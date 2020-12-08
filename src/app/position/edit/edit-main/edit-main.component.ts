@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PositionCreationService } from '../../position-creation.service';
 import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
@@ -10,14 +10,18 @@ import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
   styleUrls: ['./edit-main.component.css']
 })
 export class EditMainComponent {
-  @Input() details
+  @Input() details;
+  @Output() newEditValues = new EventEmitter<string>();
+  
   get detailsForEdit() {
     return this.positionCreationService.detailsForEdit;
   }
   constructor(public dialog: MatDialog, private positionCreationService: PositionCreationService) {
     console.log(this.detailsForEdit);
   }
-
+  addNewItem(resultFromDialogEdit) {
+    this.newEditValues.emit(resultFromDialogEdit);
+  }
   openDialog() {
     const dialogRef = this.dialog.open(DialogEditComponent, {
       width: '350px',
@@ -31,8 +35,11 @@ export class EditMainComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: edit`);
+      this.addNewItem(result);
+      console.log(`Dialog edit result: ${result}`);
     });
   }
-
+  ngOnDestroy() {
+    this.positionCreationService.dataAfterEditing = '';
+  }
 }

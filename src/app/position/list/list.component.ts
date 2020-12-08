@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, interval, Observable, observable, from, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { PositionCreationService } from '../position-creation.service';
 
 export interface PortfolioData {
@@ -17,17 +17,26 @@ export interface PortfolioData {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit, OnDestroy {
-  positions: Observable<any>;
-  inputFilter;
-  constructor(private router: Router, private listPositions: PositionCreationService) {
-    this.listPositions.getAllPositions();
-    this.positions = this.listPositions.returnAsObservable()
+  positions;
+  inputFilter = '';
 
+  constructor(private router: Router, private listPositions: PositionCreationService) {}
+  
+  applyFilter(event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.inputFilter = filterValue;
   }
-  applyFilter(event: String) {
-    
-  }
-  ngOnInit() { }
+  ngOnInit() {
+    this.listPositions.getAllPositions();
+    this.listPositions.returnAsObservable().pipe(
+      map((coins: any) => {
+         let newCoins = coins.filter(coin => coin.symbol.includes(this.inputFilter));
+         console.log(newCoins);
+         return newCoins;
+        }),
+    )
+      .subscribe((data) => { this.positions = data });
+   }
 
   portfolioCardClickTradingView(symbol: String) {
     console.log(symbol);
@@ -37,7 +46,7 @@ export class ListComponent implements OnInit, OnDestroy {
     console.log(symbol);
     this.router.navigate(['position', 'details', symbol.toUpperCase()])
   }
- 
+
   ngOnDestroy(): void {
     console.log('OUT');
     this.listPositions.stopExchangeUpdates();

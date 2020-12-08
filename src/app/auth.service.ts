@@ -10,7 +10,7 @@ const baseURL = 'http://localhost:3000/api';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AuthService {
   currentUser;
   
   constructor(private http: HttpClient,private positionCreationService: PositionCreationService) { }

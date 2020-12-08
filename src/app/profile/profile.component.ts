@@ -15,9 +15,26 @@ export interface Tile {
 export class ProfileComponent implements OnInit {
 
   public barChartOptions = {
-    scaleShowVerticalLines: false,
-    maintainAspectRatio: false,
     responsive: true,
+    scales: {
+      yAxes: [
+        {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: "Income",
+          },
+        },
+      ],
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: "Month",
+          },
+        },
+      ],
+    },
   };
   public barChartColors = [{
     backgroundColor: []
@@ -40,11 +57,12 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService) {
     this.groupedResponse = zip(this.profileService.barChartProfile(), this.profileService.pieChartProfile());
   }
-
+  // this.profileService.getAverages()
   ngOnInit(): void {
     this.groupedResponse.subscribe(resp => {
       this.renderBarChart(resp[0]);
       this.renderPieChart(resp[1]);
+      // this.renderAverages(resp[2]);
     })
   }
   renderBarChart(resp: Array<any>) {
@@ -72,6 +90,9 @@ export class ProfileComponent implements OnInit {
       this.pieChartData.push(Number(value[0][1].toFixed(2)));
     }
     this.dataPieChart = true;
+  }
+  renderAverages(resp) {
+    console.log(resp);
   }
 
 

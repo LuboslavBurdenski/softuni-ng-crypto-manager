@@ -5,21 +5,11 @@ import { map, tap } from 'rxjs/operators';
 import { PositionCreationService } from '../position-creation.service';
 
 
-// export interface IDetails {
-//   name: string;
-//   value: number;
-// };
-// let DETAILS_DATA = [
-//   { name: 'Symbol', value: 1 },
-//   { name: 'Invested sum', value: 22 },
-//   { name: 'Coin', value: 22 },
-//   { name: 'Target profit', value: 22 },
-//   { name: 'Stop loss', value: 22 },
-//   { name: 'Profit/loss', value: 22 },
-//   { name: 'Profit/loss %', value: 22 },
-//   { name: '24h change', value: 22 },
-//   { name: 'Created at', value: 22 },
-// ];
+export interface IDetails {
+  name: string;
+  value: number;
+};
+
 
 @Component({
   selector: 'app-details',
@@ -64,6 +54,13 @@ export class DetailsComponent {
           this.dataSource = this.DETAILS_DATA;
         })
       )
+  }
+
+  addItem(newParams) {
+    if (newParams !== undefined) {
+      this.DETAILS_DATA[4].value = newParams.target;
+      this.DETAILS_DATA[5].value = newParams.stop;
+    }
   }
 
 

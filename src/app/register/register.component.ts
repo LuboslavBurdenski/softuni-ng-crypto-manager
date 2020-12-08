@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 import { rePasswordValidatorFactory } from '../shared/validators';
 
 @Component({
@@ -19,7 +19,7 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
+    private auth: AuthService,
     private router: Router
   ) {
     const passwordControl = this.fb.control('', [Validators.required, Validators.minLength(5)]);
@@ -35,9 +35,9 @@ export class RegisterComponent {
     const data = this.form.value;
   
     console.log(data);
-    this.userService.registerService(data).subscribe({
+    this.auth.registerService(data).subscribe({
       next: (resp) => {
-        this.userService.currentUser = resp;
+        this.auth.currentUser = resp;
         this.router.navigate(['/']);
       },
       error: (err) => {

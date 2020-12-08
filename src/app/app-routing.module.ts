@@ -54,35 +54,19 @@ const routes: Routes = [
         },
         component: ProfileComponent
       },
-    ]
-  },
-
-];
-// [{
-//   path: '',
-//   canActivateChild: [AuthGuard],
-//   children: [
-//     {
-//       path: '',
-//       pathMatch: 'full',
-//       redirectTo: '/home'
-//     },
-//     {
-//       path: 'home',
-//       component: HomeComponent,
-//       data: {
-//         title: 'HOME'
-//       }
-//     },
+      
 //     {
 //       path: '**',
 //       component: NotFoundComponent,
 //       data: {
 //         title: '404'
 //       }
-//     }
-//   ]
-// },]
+    ]
+  },
+
+];
+
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

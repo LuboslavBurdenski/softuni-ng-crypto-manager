@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { element } from 'protractor';
 import { ExcelService } from './excel.service';
 import { HistoryService } from './history.service';
 
@@ -26,31 +27,30 @@ export class HistoryComponent implements AfterViewInit, OnInit {
   displayedColumns: string[];
   dataSource = new MatTableDataSource();
   positions;
-  private currentPage;
   dataReady: Boolean = false;
-
+  currentPage;
   constructor(private excelService: ExcelService, private historyService: HistoryService) { }
 
-  ngOnInit() { }
-
-  ngAfterViewInit() {
+  ngOnInit() {
     this.historyService.getData(0, 10)
       .subscribe(data => {
+        this.currentPage = data.positions;
         this.positions = data.positions;
         this.positions.length = data.total;
         this.dataSource = new MatTableDataSource(this.positions);
         this.dataSource.paginator = this.paginator;
-        this.dataReady = true
-        setTimeout(() => {
-          this.dataSource.sort = this.sort;
-        }, 0);
+        this.dataSource.sort = this.sort;
       });
   }
-  
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.dataReady = true;
+    }, 0);
+  }
   pageChanged(event) {
     let pageIndex = event.pageIndex;
     let pageSize = event.pageSize;
-    let previousIndex = event.previousPageIndex;
     let previousSize = pageSize * pageIndex;
 
     this.historyService
@@ -72,8 +72,11 @@ export class HistoryComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
   exportAsXLSX(): void {
-    this.excelService.exportAsExcelFile(this.currentPage, 'sample');
+   
+
+    //this.excelService.exportAsExcelFile(this.currentPage, 'sample');
   }
 }
 
