@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-
 import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
+
 
 const routes: Routes = [
   {
@@ -23,20 +21,6 @@ const routes: Routes = [
         component: HomeComponent,
         data: {
          
-        }
-      },
-      {
-        path: 'login',
-        component: LoginComponent,
-        data: {
-          isLogged: false
-        }
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-        data: {
-          isLogged: false
         }
       },
       {

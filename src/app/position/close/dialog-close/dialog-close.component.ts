@@ -1,7 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
 import { PositionCreationService } from '../../position-creation.service';
 import { CloseMainComponent } from '../close-main/close-main.component';
 
@@ -10,39 +9,40 @@ import { CloseMainComponent } from '../close-main/close-main.component';
   templateUrl: './dialog-close.component.html',
   styleUrls: ['./dialog-close.component.css']
 })
-export class DialogCloseComponent implements OnInit {
-
+export class DialogCloseComponent implements OnInit, OnDestroy {
   currentData;
+  totalSum;
   closeFormValue;
+ 
 
-  get closedData(){
+  get closedData() {
     return this.positionCreationService.dataAfterClose;
   }
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CloseMainComponent>,
     private positionCreationService: PositionCreationService,
-    private auth: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.currentData = this.data;
-    console.log(this.closedData);
+    this.totalSum = this.currentData.sum;
+
     if (!this.closedData) {
       this.currentData = this.data;
     } else {
       this.currentData = this.closedData;
     }
   }
-  get userBalance(){
-    return this.auth.currentUser.balance;
-  }
+
   onClose(closeForm) {
     this.closeFormValue = closeForm.value;
-    console.log( this.userBalance);
-    this.closeFormValue.balance = this.userBalance;
     this.positionCreationService.dataAfterClose = this.closeFormValue;
-    this.positionCreationService.closePosition(this.router.url.split('/')[3], closeForm.value).subscribe(resp => console.log(resp))
+    this.positionCreationService.closePosition(this.router.url.split('/')[3], closeForm.value).subscribe((resp)=>{
+      if(this.totalSum === this.closeFormValue.sum){
+        this.router.navigate(['history']);
+      }
+    })
   }
   ngOnDestroy() {
     this.dialogRef.close(this.closeFormValue);

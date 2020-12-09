@@ -25,11 +25,11 @@
         <mat-icon>analytics</mat-icon>
         History
       </a>
-      <a *ngIf='!isLogged' mat-list-item routerLink="/login" [routerLinkActive]="['active']">
+      <a *ngIf='!isLogged' mat-list-item routerLink="/user/login" [routerLinkActive]="['active']">
         <mat-icon>login</mat-icon>
         Login
       </a>
-      <a *ngIf='!isLogged' mat-list-item routerLink="/register" [routerLinkActive]="['active']">
+      <a *ngIf='!isLogged' mat-list-item routerLink="/user/register" [routerLinkActive]="['active']">
         <mat-icon>plus_one</mat-icon>
         Register
       </a>
@@ -48,9 +48,17 @@
         <mat-icon>list</mat-icon>
       </button>
 
-      <!-- <mat-card class="balance">
-        BALANCE: {{currentUser?.balance}}$
-      </mat-card> -->
+      <mat-expansion-panel *ngIf="isLogged" (click)="getCurrentUser()" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title *ngIf="panelOpenState == true">
+            <h3>{{currentUser?.username}}'s</h3>
+          </mat-panel-title>
+          <mat-panel-description >
+            Account balance {{panelOpenState ? 'opened' : ''}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h3 *ngIf="panelOpenState == true">{{currentUser?.balance | number : '1.0-4'}}$</h3>
+      </mat-expansion-panel>
 
     </mat-toolbar>
 

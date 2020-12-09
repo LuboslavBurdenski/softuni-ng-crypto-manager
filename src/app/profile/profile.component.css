@@ -28,3 +28,13 @@ h3{
 .example-card-two {
     max-width: 400px;
 }
+
+mat-card-content {
+   
+    align-items: center; 
+    justify-content: center;
+}
+mat-card-title{
+    text-align: center;
+    font-size: 300%;
+}

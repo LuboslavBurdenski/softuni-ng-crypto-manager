@@ -1,4 +1,3 @@
-
 <mat-card class='filter'>
   <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -7,17 +6,17 @@
 </mat-card>
 
 <div class="container">
-  <mat-card class="example-card">
+  <mat-card *ngIf="positions.length > 0" class="example-card">
     <mat-card-content class="grid">
       <mat-card class="example-card-two" *ngFor="let position of positions">
         <mat-card-header>
           <mat-card-title>{{position.symbol | uppercase}}</mat-card-title>
-          <mat-card-subtitle  [ngStyle]="{'color': position.changeIn24h > 0 ? 'teal' : 'hotpink'}"
-          >{{position.changeIn24h | number : '1.0-4'}}% in 24h</mat-card-subtitle>
+          <mat-card-subtitle [ngStyle]="{'color': position.changeIn24h > 0 ? 'teal' : 'hotpink'}">
+            {{position.changeIn24h | number : '1.0-4'}}% in 24h</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <h1  [ngStyle]="{'color': position.prfLossPerCent > 0 ? 'teal' : 'hotpink'}"
-          >{{position.prfLossPerCent | number : '1.0-4' }}%</h1>
+          <h1 [ngStyle]="{'color': position.prfLossPerCent > 0 ? 'teal' : 'hotpink'}">
+            {{position.prfLossPerCent | number : '1.0-4' }}%</h1>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button (click)="portfolioCardClickDetails(position.symbol)">Details</button>
@@ -27,7 +26,6 @@
         </mat-card-actions>
       </mat-card>
     </mat-card-content>
-
   </mat-card>
-
+  <mat-car *ngIf="positions.length == 0">No open positions to show</mat-car>
 </div>

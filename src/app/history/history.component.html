@@ -1,8 +1,7 @@
 <div *ngIf="dataReady" class="entire-table">
   
-  <button mat-raised-button (click)="exportAsXLSX()" style="margin-top: auto;">Export as Excel file</button>
+  <button mat-raised-button (click)="exportAsXLSX()" style="margin-top: auto;">Export as MS Excel file</button>
    
-    
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. BTC" #input>

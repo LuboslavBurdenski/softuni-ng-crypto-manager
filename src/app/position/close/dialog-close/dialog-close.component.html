@@ -3,13 +3,15 @@
     <mat-dialog-content class="mat-typography">
         <form #f="ngForm" class="my-form">
             <mat-form-field class="full-width">
-                <mat-label>Sum</mat-label>
-                <input type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum" #sum='ngModel'>
+                <mat-label>Sell sum in USD: {{sum.value}}$/{{totalSum}}$</mat-label>
+                <input type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum" #sum='ngModel' required>
             </mat-form-field>
         </form>
-
-        <button [disabled]='f.invalid' mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial
-            (click)="onClose(f)">Close</button>
+        <mat-card class="alert" *ngIf='(sum.value > totalSum) && sum.dirty'>Closing sum can't be higher than your entire
+            position!</mat-card>
+            <mat-card class="alert" *ngIf='sum.errors?.required'>Sell sum is required!</mat-card>
+        <button [disabled]='(sum.value > totalSum) && sum.dirty || f.invalid' mat-raised-button color="accent"
+            [mat-dialog-close]="false" cdkFocusInitial (click)="onClose(f)">Close</button>
     </mat-dialog-content>
 
 </div>

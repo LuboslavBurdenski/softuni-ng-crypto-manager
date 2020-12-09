@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../core/guards/auth.guard';
-import { MainComponent } from './create/main/main.component';
 import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component';
 import { TradingViewChartComponent } from './tradingViewChart/tradingViewChart.component';
-
-
 
 const routes: Routes = [
   {

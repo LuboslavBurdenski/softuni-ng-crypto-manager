@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-grid-list cols="7" rowHeight="100px">
+    <mat-grid-list cols="7" rows="5" rowHeight="100px">
         <mat-grid-tile colspan="4" rowspan="5">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -15,6 +15,8 @@
 
             </table>
         </mat-grid-tile>
+
+
         <mat-grid-tile colspan="3" rowspan="1">
 
             <app-edit-main (newEditValues)="addEdit($event)"></app-edit-main>
@@ -38,5 +40,6 @@
                 <mat-card-title>{{shares | number : '1.0-4'}}</mat-card-title>
             </mat-card>
         </mat-grid-tile>
+
     </mat-grid-list>
 </mat-card>

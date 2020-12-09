@@ -17,9 +17,7 @@ export class AuthGuard implements CanActivateChild {
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     let stream$: Observable<any | null>;
     if (this.auth.currentUser === undefined) {
-     
       stream$ = this.auth.getUserProfile();
-     
     } else {
       stream$ = of(this.auth.currentUser);
     }

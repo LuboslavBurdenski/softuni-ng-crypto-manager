@@ -5,6 +5,7 @@ table {
 
 app-edit-main {
     width: 50%;
+    margin-left: 10%;
 }
 app-close-main {
     width: 50%;
@@ -16,6 +17,7 @@ mat-card {
     margin-top: 4%;
     margin-bottom: 3%;
     font-weight: bold;
+   
 }
 
 .right {
@@ -24,17 +26,24 @@ mat-card {
     justify-items: center;
     justify-content: center;
     text-align: center;
+    background-color: #1E272C !important;
+    color: white;
 }
 
 .right-column{
     text-align: right;
 }
-
-mat-card-content {
+mat-grid-tile{
+    margin-bottom: 5%;
     margin-bottom: 10%;
     display: flex; 
     align-items: center; 
     justify-content: center;
+   
+}
+mat-card-content {
+   
+   
 }
 mat-card-title{
     text-align: center;

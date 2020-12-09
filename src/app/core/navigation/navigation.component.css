@@ -32,9 +32,10 @@ a {
   background-color: #21CE99 !important;
 }
 
-.balance {
-  margin-left: 80%;
-  height: 40%;
-  width: 50%;
-  background-color: #21CE99;
+.mat-form-field + .mat-form-field {
+  margin-left: 30px;
+}
+mat-expansion-panel{
+  margin-top: auto;
+  margin-bottom: auto;
 }

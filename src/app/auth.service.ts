@@ -22,7 +22,7 @@ export class AuthService {
   getUserProfile(): Observable<any> {
     return this.http.get(`/users/profile`)
       .pipe(
-        tap(((user) => { this.currentUser = user; console.log(this.currentUser); })),
+        tap(((user) => { this.currentUser = user;})),
         catchError(() => { this.currentUser = null; return of(null); })
       );
   }

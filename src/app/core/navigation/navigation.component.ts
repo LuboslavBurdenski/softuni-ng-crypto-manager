@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -12,21 +12,28 @@ import { Router } from '@angular/router';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
   balance: Number;
+  currentUser;
+  panelOpenState = false;
+
+  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private router: Router) {}
+  
   get isLogged(): boolean {
     return !!this.auth.currentUser;
   }
-  get currentUser() {
-    return this.auth.currentUser;
+  getCurrentUser() {
+    this.currentUser = this.auth.currentUser;
   }
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
-  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private router: Router) {
-   
+  
+  
+  ngOnInit(){
+    this.currentUser = this.auth.currentUser;
   }
   logout() {
     console.log('LOGOUTTTTTT');

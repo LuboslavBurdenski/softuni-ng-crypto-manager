@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { zip } from 'rxjs';
+import { forkJoin, zip } from 'rxjs';
 import { ProfileService } from './profile.service';
 export interface Tile {
   color: string;
@@ -39,8 +39,7 @@ export class ProfileComponent implements OnInit {
   public barChartColors = [{
     backgroundColor: []
   }];
-  public barChartLabels = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+  public barChartLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   public barChartType = 'bar';
   public barChartLegend = false;
   public barChartData = [
@@ -53,22 +52,24 @@ export class ProfileComponent implements OnInit {
 
   dataBarChart: Boolean = false;
   dataPieChart: Boolean = false;
+  averages;
   groupedResponse;
+
   constructor(private profileService: ProfileService) {
-    this.groupedResponse = zip(this.profileService.barChartProfile(), this.profileService.pieChartProfile());
+    this.groupedResponse = zip(this.profileService.barChartProfile(), this.profileService.pieChartProfile(), this.profileService.getAverages());
   }
-  // this.profileService.getAverages()
+  //
   ngOnInit(): void {
     this.groupedResponse.subscribe(resp => {
       this.renderBarChart(resp[0]);
       this.renderPieChart(resp[1]);
-      // this.renderAverages(resp[2]);
+      this.renderAverages(resp[2]);
     })
   }
   renderBarChart(resp: Array<any>) {
     resp.forEach((month: Object, i: Number) => {
       let monthIndex = Number(month['monthValue']) - 1;
-      this.barChartData[0].data[monthIndex] = month['avgValue'];
+      this.barChartData[0].data[monthIndex] = month['sumValue'];
     })
     this.barChartData[0].data.forEach((value, i) => {
       if (value > 0) {
@@ -92,7 +93,7 @@ export class ProfileComponent implements OnInit {
     this.dataPieChart = true;
   }
   renderAverages(resp) {
-    console.log(resp);
+     this.averages = resp;
   }
 
 

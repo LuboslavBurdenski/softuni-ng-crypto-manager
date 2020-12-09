@@ -4,8 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { HistoryComponent } from './history/history.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,  ReactiveFormsModule  } from "@angular/forms";
@@ -17,13 +15,12 @@ import { PositionModule } from './position/position.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { ChartsModule } from 'ng2-charts';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent,
     HistoryComponent,
     ProfileComponent,
   ],
@@ -39,8 +36,10 @@ import { ChartsModule } from 'ng2-charts';
     PositionModule,
     SharedModule,
     ChartsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    UserModule
   ],
+  
   exports: [AppRoutingModule, SharedModule, ChartsModule],
   providers: [ExcelService],
   bootstrap: [AppComponent],
