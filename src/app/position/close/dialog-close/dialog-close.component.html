@@ -1,1 +1,15 @@
-<p>dialog-close works!</p>
+<div class="entire">
+
+    <mat-dialog-content class="mat-typography">
+        <form #f="ngForm" class="my-form">
+            <mat-form-field class="full-width">
+                <mat-label>Sum</mat-label>
+                <input type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum" #sum='ngModel'>
+            </mat-form-field>
+        </form>
+
+        <button [disabled]='f.invalid' mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial
+            (click)="onClose(f)">Close</button>
+    </mat-dialog-content>
+
+</div>

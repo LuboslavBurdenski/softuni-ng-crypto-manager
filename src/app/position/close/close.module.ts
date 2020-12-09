@@ -18,4 +18,4 @@ import { DialogCloseComponent } from './dialog-close/dialog-close.component';
     FormsModule
   ]
 })
-export class EditModule { }
+export class CloseModule { }

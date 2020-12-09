@@ -9,6 +9,6 @@ export class UserService {
 
   constructor(public http: HttpClient) { }
   loadCoins() {
-    return this.http.get("http://localhost:3000/api/coins");
+    return this.http.get("/coins");
   }
 }

@@ -4,7 +4,10 @@ table {
 }
 
 app-edit-main {
-    width: 40%;
+    width: 50%;
+}
+app-close-main {
+    width: 50%;
 }
 
 mat-card {
@@ -13,15 +16,6 @@ mat-card {
     margin-top: 4%;
     margin-bottom: 3%;
     font-weight: bold;
-}
-
-button {
-    width: 40%;
-    background-color: #21CE99 !important;
-}
-
-button.rigth-btn {
-    margin-left: 10%;
 }
 
 .right {

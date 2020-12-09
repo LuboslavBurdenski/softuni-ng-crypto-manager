@@ -8,18 +8,19 @@ import { ListComponent } from './list/list.component';
 import { CreateModule } from './create/create.module';
 import { DetailsComponent } from './details/details.component';
 import { EditModule } from './edit/edit.module';
-
+import { CloseModule } from './close/close.module';
 
 
 @NgModule({
   declarations: [TradingViewChartComponent, ListComponent, DetailsComponent],
-  exports: [TradingViewChartComponent, CreateModule, EditModule, DetailsComponent],
+  exports: [TradingViewChartComponent, CreateModule, EditModule, DetailsComponent, CloseModule],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
     CreateModule,
-    EditModule
+    EditModule,
+    CloseModule
   ],
 
 })

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -16,12 +16,13 @@ export interface IDetails {
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnDestroy {
   displayedColumns;
   dataSource;
   DETAILS_DATA;
   avgPrice;
   shares;
+
   constructor(private positionCreationService: PositionCreationService, private router: Router) {
     this.detailsMaking().subscribe(data => this.positionCreationService.detailsForEdit = data);
   }
@@ -56,11 +57,21 @@ export class DetailsComponent {
       )
   }
 
-  addItem(newParams) {
+  addEdit(newParams) {
     if (newParams !== undefined) {
       this.DETAILS_DATA[4].value = newParams.target;
       this.DETAILS_DATA[5].value = newParams.stop;
     }
+
+  }
+  addClose(newParams) {
+    if (newParams !== undefined) {
+      this.DETAILS_DATA[3].value = newParams.sum;
+     
+    }
+  }
+  ngOnDestroy(){
+    this.positionCreationService.detailsForEdit = "";
   }
 
 

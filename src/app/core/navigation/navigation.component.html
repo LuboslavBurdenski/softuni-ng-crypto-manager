@@ -48,13 +48,17 @@
         <mat-icon>list</mat-icon>
       </button>
 
-      <mat-card class="balance">
-      BALANCE: {{currentUser?.balance}}$
-        </mat-card>
+      <!-- <mat-card class="balance">
+        BALANCE: {{currentUser?.balance}}$
+      </mat-card> -->
 
     </mat-toolbar>
+
     <!-- router -->
-    <router-outlet> </router-outlet>
+    <router-outlet>
+      <app-loader></app-loader>
+    </router-outlet>
     <!-- router -->
+
   </mat-sidenav-content>
 </mat-sidenav-container>

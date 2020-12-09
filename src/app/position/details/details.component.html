@@ -17,9 +17,9 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="3" rowspan="1">
 
-            <app-edit-main (newEditValues)="addItem($event)"></app-edit-main>
+            <app-edit-main (newEditValues)="addEdit($event)"></app-edit-main>
 
-            <button mat-button class="right-btn">Close</button>
+            <app-close-main (newCloseValue)="addClose($event)"></app-close-main>
 
         </mat-grid-tile>
         <mat-grid-tile colspan="3" rowspan="2">

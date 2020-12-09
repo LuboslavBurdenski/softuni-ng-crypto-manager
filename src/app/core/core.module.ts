@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
+import { appInterceptorProvider } from './interceptors/app.interceptor';
+import { loaderInterceptorProvider } from './interceptors/loader.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
   declarations: [
     NavigationComponent,
+    LoaderComponent,
   ],
   exports:[NavigationComponent],
   imports: [
@@ -15,5 +19,6 @@ import { MaterialModule } from '../material/material.module';
     RouterModule,
     MaterialModule
   ],
+  providers: [appInterceptorProvider, loaderInterceptorProvider]
 })
 export class CoreModule { }

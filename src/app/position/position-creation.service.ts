@@ -11,7 +11,8 @@ export class PositionCreationService {
   private evs: EventSource;
   public detailsForEdit;
   public dataAfterEditing = '';
-
+  public dataAfterClose = '';
+  
   public subj = new BehaviorSubject([]);
 
   constructor(public http: HttpClient) { }
@@ -20,12 +21,12 @@ export class PositionCreationService {
     return this.subj.asObservable();
   }
   createPosition(data): Observable<any> {
-    return this.http.post('http://localhost:3000/api/position/create', data, { withCredentials: true });
+    return this.http.post(`/position/create`, data);
   }
   getAllPositions() {
     let subject = this.subj;
     if (typeof (EventSource) !== undefined) {
-      this.evs = new EventSource("http://localhost:3000/api/position/list", { withCredentials: true });
+      this.evs = new EventSource("http://localhost:3000/api/position/list", {withCredentials: true});
 
       this.evs.onopen = function (e) {
         console.log("Opening connection.Ready State is" + " " + this.readyState);
@@ -50,14 +51,17 @@ export class PositionCreationService {
     this.evs.close();
   }
   getDetailForPosition(coin: String) {
-    return this.http.get(`http://localhost:3000/api/position/details/${coin}`, { withCredentials: true });
+    return this.http.get(`/position/details/${coin}`);
 
   }
   editPosition(coin, data): Observable<any> {
-    return this.http.put(`http://localhost:3000/api/position/edit/${coin}`, data, { withCredentials: true });
+    return this.http.put(`/position/edit/${coin}`, data);
+  }
+  closePosition(coin, data) {
+    return this.http.put(`/position/close/${coin}`, data);
   }
   getHistory(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/position/history', { withCredentials: true });
+    return this.http.get('/position/history');
   }
 
 }

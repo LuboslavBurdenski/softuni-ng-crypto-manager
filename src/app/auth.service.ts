@@ -5,31 +5,30 @@ import { of } from 'rxjs/internal/observable/of';
 import { catchError, tap } from 'rxjs/operators';
 import { PositionCreationService } from './position/position-creation.service';
 
-
-const baseURL = 'http://localhost:3000/api';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
   currentUser;
   
   constructor(private http: HttpClient,private positionCreationService: PositionCreationService) { }
   registerService(data): Observable<any> {
-    return this.http.post(`${baseURL}/users/register`, data, { withCredentials: true });
+    return this.http.post(`/users/register`, data);
   }
   loginUserService(data): Observable<any> {
-    return this.http.post(`${baseURL}/users/login`, data, { withCredentials: true });
+    return this.http.post(`/users/login`, data);
   }
   getUserProfile(): Observable<any> {
-    return this.http.get(`${baseURL}/users/profile`, { withCredentials: true })
+    return this.http.get(`/users/profile`)
       .pipe(
-        tap(((user) => { this.currentUser = user })),
+        tap(((user) => { this.currentUser = user; console.log(this.currentUser); })),
         catchError(() => { this.currentUser = null; return of(null); })
       );
   }
   logout(): Observable<any> {
     this.positionCreationService.subj = new BehaviorSubject([]);
-    return this.http.get(`${baseURL}/users/logout`, { withCredentials: true }).pipe(
+    return this.http.get(`/users/logout`).pipe(
       tap(() => this.currentUser = null)
     );
   }
