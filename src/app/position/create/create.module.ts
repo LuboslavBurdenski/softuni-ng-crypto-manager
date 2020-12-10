@@ -5,6 +5,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule } from "@angular/forms";
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from "@angular/forms";
     CommonModule,
     RouterModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   
 })

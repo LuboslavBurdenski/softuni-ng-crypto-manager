@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import {  tap } from 'rxjs/operators';
 import { PositionCreationService } from '../position-creation.service';
 
 
@@ -66,8 +66,7 @@ export class DetailsComponent implements OnDestroy {
   }
   addClose(newParams) {
     if (newParams !== undefined) {
-      this.DETAILS_DATA[3].value = newParams.sum;
-     
+      //this.DETAILS_DATA[3].value = ... We could change data in DetailsComponent with the Output value from CloseMainComponent
     }
   }
   ngOnDestroy(){

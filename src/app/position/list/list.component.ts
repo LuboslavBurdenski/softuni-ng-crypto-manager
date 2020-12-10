@@ -18,7 +18,6 @@ export interface PortfolioData {
 export class ListComponent implements OnInit, OnDestroy {
   positions;
   inputFilter = '';
-
   constructor(private router: Router, private listPositions: PositionCreationService) { }
 
   applyFilter(event) {
@@ -31,13 +30,14 @@ export class ListComponent implements OnInit, OnDestroy {
       .pipe(
         map((coins: any) => {
           let newCoins = coins.filter(coin => coin.symbol.includes(this.inputFilter));
-          console.log(newCoins);
           return newCoins;
         }),
       )
       .subscribe((data) => { this.positions = data });
   }
+  getListWithSSE() {
 
+  }
   portfolioCardClickTradingView(symbol: String) {
     this.router.navigate(['position', 'chart', symbol.toUpperCase()])
   }
@@ -45,6 +45,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.router.navigate(['position', 'details', symbol.toUpperCase()])
   }
   ngOnDestroy(): void {
+    this.positions = [];
     this.listPositions.stopExchangeUpdates();
   }
 }

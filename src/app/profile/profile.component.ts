@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, zip } from 'rxjs';
+import {  zip } from 'rxjs';
 import { ProfileService } from './profile.service';
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
+export interface IAverages {
+  max: number;
+  min: number;
+  winRate: number;
 }
 @Component({
   selector: 'app-profile',
@@ -13,7 +12,6 @@ export interface Tile {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   public barChartOptions = {
     responsive: true,
     scales: {
@@ -52,13 +50,13 @@ export class ProfileComponent implements OnInit {
 
   dataBarChart: Boolean = false;
   dataPieChart: Boolean = false;
-  averages;
+  averages: IAverages;
   groupedResponse;
 
   constructor(private profileService: ProfileService) {
     this.groupedResponse = zip(this.profileService.barChartProfile(), this.profileService.pieChartProfile(), this.profileService.getAverages());
   }
-  //
+  
   ngOnInit(): void {
     this.groupedResponse.subscribe(resp => {
       this.renderBarChart(resp[0]);
@@ -92,10 +90,8 @@ export class ProfileComponent implements OnInit {
     }
     this.dataPieChart = true;
   }
-  renderAverages(resp) {
+
+  renderAverages(resp: IAverages) {
      this.averages = resp;
   }
-
-
-
 }

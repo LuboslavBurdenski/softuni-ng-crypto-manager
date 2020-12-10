@@ -13,14 +13,13 @@ export class HistoryService {
     let params = new HttpParams();
     params = params.set('offset', offset);
     params = params.set('limit', limit);
-    return this.http.get('http://localhost:3000/api/position/history?' + params.toString(), { withCredentials: true });
+    return this.http.get('/position/history?' + params.toString());
   }
 
   getNextData(offset, limit): Observable<any> {
     let params = new HttpParams();
     params = params.set('offset', offset);
-    
     params = params.set('limit', limit);
-    return this.http.get('http://localhost:3000/api/position/history?' + params.toString(),  { withCredentials: true });
+    return this.http.get('/position/history?' + params.toString());
   }
 }

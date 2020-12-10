@@ -7,16 +7,17 @@ import { PositionCreationService } from '../../position-creation.service';
 import { MainComponent } from '../main/main.component';
 
 
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
-export class DialogComponent implements OnDestroy{
+export class DialogComponent implements OnDestroy {
   get selectedCoin() {
     return this.positionCreationService.selectedCoin;
   }
-  get currentUserBalance(){
+  get currentUserBalance() {
     return this.auth.currentUser.balance;
   }
   formValue;
@@ -44,7 +45,7 @@ export class DialogComponent implements OnDestroy{
       console.log(res)
     }, (e) => { console.log(e); });
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.dialogRef.close(this.formValue);
   }
 

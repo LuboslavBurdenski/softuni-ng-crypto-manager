@@ -29,7 +29,7 @@ export class CloseMainComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.addNewItem(result);
-      console.log(`Dialog close result: ${result}`);
+      console.log(`Dialog close result: ${result.sum}`);
     });
   }
   ngOnDestroy() {

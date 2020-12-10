@@ -29,6 +29,7 @@ export class HistoryComponent implements AfterViewInit, OnInit {
   positions;
   dataReady: Boolean = false;
   currentPage;
+  
   constructor(private excelService: ExcelService, private historyService: HistoryService) { }
 
   ngOnInit() {
@@ -38,8 +39,11 @@ export class HistoryComponent implements AfterViewInit, OnInit {
         this.positions = data.positions;
         this.positions.length = data.total;
         this.dataSource = new MatTableDataSource(this.positions);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        console.log(this.positions);
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }, 0);
       });
   }
 
@@ -62,7 +66,11 @@ export class HistoryComponent implements AfterViewInit, OnInit {
         this.positions.length = res.total;
         this.dataSource = new MatTableDataSource(this.positions);
         this.dataSource._updateChangeSubscription();
-        this.dataSource.paginator = this.paginator;
+
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }, 0);
       });
   }
   applyFilter(event: Event) {
@@ -74,9 +82,7 @@ export class HistoryComponent implements AfterViewInit, OnInit {
   }
 
   exportAsXLSX(): void {
-   
-
-    //this.excelService.exportAsExcelFile(this.currentPage, 'sample');
+    this.excelService.exportAsExcelFile(this.currentPage, 'sample');
   }
 }
 

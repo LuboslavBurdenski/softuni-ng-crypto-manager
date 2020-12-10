@@ -13,11 +13,11 @@ export class DialogCloseComponent implements OnInit, OnDestroy {
   currentData;
   totalSum;
   closeFormValue;
- 
 
   get closedData() {
     return this.positionCreationService.dataAfterClose;
   }
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CloseMainComponent>,
     private positionCreationService: PositionCreationService,
@@ -38,11 +38,9 @@ export class DialogCloseComponent implements OnInit, OnDestroy {
   onClose(closeForm) {
     this.closeFormValue = closeForm.value;
     this.positionCreationService.dataAfterClose = this.closeFormValue;
-    this.positionCreationService.closePosition(this.router.url.split('/')[3], closeForm.value).subscribe((resp)=>{
-      if(this.totalSum === this.closeFormValue.sum){
-        this.router.navigate(['history']);
-      }
-    })
+    this.positionCreationService
+      .closePosition(this.router.url.split('/')[3], closeForm.value)
+      .subscribe((resp) => { this.router.navigate(['history']) })
   }
   ngOnDestroy() {
     this.dialogRef.close(this.closeFormValue);

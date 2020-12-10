@@ -1,8 +1,9 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PositionCreationService } from '../../position-creation.service';
 import { EditMainComponent } from '../edit-main/edit-main.component';
+
 
 @Component({
   selector: 'app-dialog-edit',
@@ -13,17 +14,17 @@ export class DialogEditComponent implements OnInit, OnDestroy {
   currentData;
   editFormValue;
 
-  get editedData(){
+  get editedData() {
     return this.positionCreationService.dataAfterEditing;
   }
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EditMainComponent>,
     private positionCreationService: PositionCreationService,
-    private router: Router
-  ) {}
+    private router: Router,
+
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.editedData);
     if (!this.editedData) {
       this.currentData = this.data;
     } else {
@@ -34,11 +35,10 @@ export class DialogEditComponent implements OnInit, OnDestroy {
   onEdit(editForm) {
     this.editFormValue = editForm.value;
     this.positionCreationService.dataAfterEditing = this.editFormValue;
-    console.log(this.editedData);
-    this.positionCreationService.editPosition(this.router.url.split('/')[3], editForm.value).subscribe(resp => console.log(resp))
+    this.positionCreationService.editPosition(this.router.url.split('/')[3], editForm.value).subscribe(resp => console.log(resp));
   }
+
   ngOnDestroy() {
-   
     this.dialogRef.close(this.editFormValue);
   }
 

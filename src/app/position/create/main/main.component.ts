@@ -13,7 +13,6 @@ export class MainComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.coin);
   }
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -22,7 +21,7 @@ export class MainComponent implements OnInit {
 
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog create result: ${result.sum, result.entry}`);
+      console.log(`Dialog create is closed`);
     });
   }
 }
