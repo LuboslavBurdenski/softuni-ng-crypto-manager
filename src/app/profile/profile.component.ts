@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {  zip } from 'rxjs';
+import { zip } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { ProfileService } from './profile.service';
 export interface IAverages {
   max: number;
@@ -56,13 +57,15 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService) {
     this.groupedResponse = zip(this.profileService.barChartProfile(), this.profileService.pieChartProfile(), this.profileService.getAverages());
   }
-  
+
   ngOnInit(): void {
-    this.groupedResponse.subscribe(resp => {
-      this.renderBarChart(resp[0]);
-      this.renderPieChart(resp[1]);
-      this.renderAverages(resp[2]);
-    })
+    this.groupedResponse
+      .pipe(take(1))
+      .subscribe(resp => {
+        this.renderBarChart(resp[0]);
+        this.renderPieChart(resp[1]);
+        this.renderAverages(resp[2]);
+      });
   }
   renderBarChart(resp: Array<any>) {
     resp.forEach((month: Object, i: Number) => {
@@ -92,6 +95,8 @@ export class ProfileComponent implements OnInit {
   }
 
   renderAverages(resp: IAverages) {
-     this.averages = resp;
+    this.averages = resp;
   }
+  
 }
+

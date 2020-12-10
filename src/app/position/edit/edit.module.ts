@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { EditMainComponent } from './edit-main/edit-main.component';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [DialogEditComponent, EditMainComponent],
@@ -14,7 +14,8 @@ import { EditMainComponent } from './edit-main/edit-main.component';
     CommonModule,
     RouterModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class EditModule { }

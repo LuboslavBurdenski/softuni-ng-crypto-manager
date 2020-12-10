@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { interval, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { UserService } from './coins.service';
@@ -9,14 +9,14 @@ import { PositionCreationService } from '../position/position-creation.service'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
   data;
   filtered;
   emptyMatch: Boolean;
   selectedCoin;
-
+  subscription;
   constructor(private userService: UserService, private positionCreationService: PositionCreationService) {
-    this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; });
+    this.subscription = this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; });
   }
 
   get isThereSelectedCoin() {
@@ -41,5 +41,9 @@ export class HomeComponent {
 
     this.filtered = dataFiltered;
   }
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
+  }
+
 
 }

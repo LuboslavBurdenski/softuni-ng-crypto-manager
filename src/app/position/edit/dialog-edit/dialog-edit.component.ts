@@ -25,11 +25,13 @@ export class DialogEditComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+   
     if (!this.editedData) {
       this.currentData = this.data;
     } else {
       this.currentData = this.editedData;
     }
+    console.log(this.currentData);
   }
 
   onEdit(editForm) {

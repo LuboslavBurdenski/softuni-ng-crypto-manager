@@ -35,9 +35,7 @@ export class ListComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => { this.positions = data });
   }
-  getListWithSSE() {
-
-  }
+  
   portfolioCardClickTradingView(symbol: String) {
     this.router.navigate(['position', 'chart', symbol.toUpperCase()])
   }

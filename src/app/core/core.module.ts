@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import { appInterceptorProvider } from './interceptors/app.interceptor';
 import { loaderInterceptorProvider } from './interceptors/loader.interceptor';
 import { LoaderComponent } from './loader/loader.component';
+import { balanceInterceptorProvider } from './interceptors/balance.interceptor';
 
 
 @NgModule({
@@ -19,6 +20,6 @@ import { LoaderComponent } from './loader/loader.component';
     RouterModule,
     MaterialModule
   ],
-  providers: [appInterceptorProvider, loaderInterceptorProvider]
+  providers: [appInterceptorProvider, loaderInterceptorProvider, balanceInterceptorProvider]
 })
 export class CoreModule { }

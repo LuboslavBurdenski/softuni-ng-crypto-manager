@@ -5,21 +5,35 @@
         <form #f="ngForm" class="my-form">
             <mat-form-field class="full-width">
                 <mat-label>Target profit</mat-label>
-                <input type="number" matInput placeholder="Target profit" name="target"  [(ngModel)]="currentData.target" #target='ngModel'>
+                <input type="number" matInput placeholder="Target profit" name="target" sumValidator
+                    [(ngModel)]="currentData.target" #target='ngModel'>
             </mat-form-field>
-            <!-- TO DO !!! -->
-            <!-- <mat-card class="alert" *ngIf='(target.value < entry.value) && target.dirty'>Target profit must be higher
-                than the entry price!</mat-card> -->
+
+            <mat-card class="alert"
+                *ngIf='(target.value <= currentData.entry) && (target.value !== null) && !target.pristine'>Target profit
+                must be higher
+                than the entry price!</mat-card>
+                <mat-card class="alert" *ngIf='target.errors?.sumHigherThanZero && !target.pristine'>Target profit can't be lower or
+                    equal
+                    to
+                    0!</mat-card>
+
 
             <mat-form-field class="full-width">
                 <mat-label>Stop loss</mat-label>
-                <input type="number" matInput placeholder="Stop loss" name="stop"  [(ngModel)]="currentData.stop" #stop='ngModel'>
+                <input type="number" matInput placeholder="Stop loss" name="stop" sumValidator
+                    [(ngModel)]="currentData.stop" #stop='ngModel'>
             </mat-form-field>
-            <!-- <mat-card class="alert" *ngIf='(stop.value > entry.value) && stop.dirty'>Stop loss must be lower than the entry price!</mat-card> -->
+            <mat-card class="alert" *ngIf='(stop.value >= currentData.entry) && stop.dirty'>Stop loss must be lower than
+                the entry price!</mat-card>
+            <mat-card class="alert" *ngIf='stop.errors?.sumHigherThanZero && !stop.pristine'>Stop loss can't be lower or equal
+                to
+                0!</mat-card>
 
             <mat-form-field class="full-width">
                 <mat-label>Sum</mat-label>
-                <input disabled="true" type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum" #sum='ngModel'>
+                <input disabled="true" type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum"
+                    #sum='ngModel'>
             </mat-form-field>
 
         </form>

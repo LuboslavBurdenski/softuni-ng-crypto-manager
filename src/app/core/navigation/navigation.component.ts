@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -17,7 +17,7 @@ export class NavigationComponent implements OnInit {
   currentUser;
   panelOpenState = false;
 
-  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private router: Router,activatedRouteSnapshot: ActivatedRoute) {}
   
   get isLogged(): boolean {
     return !!this.auth.currentUser;

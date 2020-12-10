@@ -6,8 +6,6 @@ import { AuthService } from 'src/app/auth.service';
 import { PositionCreationService } from '../../position-creation.service';
 import { MainComponent } from '../main/main.component';
 
-
-
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
