@@ -57,7 +57,7 @@
             Account balance {{panelOpenState ? 'opened' : ''}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <h3 *ngIf="panelOpenState == true">{{currentUser?.balance | number : '1.0-4'}}$</h3>
+        <h3 *ngIf="panelOpenState == true">{{currentBalance | number : '1.0-4'}}$</h3>
       </mat-expansion-panel>
 
     </mat-toolbar>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { zip } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 import { ProfileService } from './profile.service';
 export interface IAverages {
   max: number;
@@ -53,8 +54,8 @@ export class ProfileComponent implements OnInit {
   dataPieChart: Boolean = false;
   averages: IAverages;
   groupedResponse;
-
-  constructor(private profileService: ProfileService) {
+ 
+  constructor(private profileService: ProfileService, private auth: AuthService) {
     this.groupedResponse = zip(this.profileService.barChartProfile(), this.profileService.pieChartProfile(), this.profileService.getAverages());
   }
 
@@ -66,6 +67,9 @@ export class ProfileComponent implements OnInit {
         this.renderPieChart(resp[1]);
         this.renderAverages(resp[2]);
       });
+  }
+  get currentBalance() {
+    return this.auth.currentBalance;
   }
   renderBarChart(resp: Array<any>) {
     resp.forEach((month: Object, i: Number) => {
@@ -97,6 +101,6 @@ export class ProfileComponent implements OnInit {
   renderAverages(resp: IAverages) {
     this.averages = resp;
   }
-  
+
 }
 

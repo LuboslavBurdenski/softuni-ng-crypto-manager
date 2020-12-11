@@ -26,7 +26,8 @@
         <mat-card class='avg'>
             <mat-card-content>
                 <h1>ACCOUNT BALANCE</h1>
-                <mat-card-title>4578 USD</mat-card-title>
+                <mat-card-title>{{currentBalance | number : '1.0-4' }}</mat-card-title>
+                <h1>USD</h1>
             </mat-card-content>
 
         </mat-card>
@@ -48,6 +49,7 @@
             <mat-card-content>
                 <h1>HIGHEST WIN</h1>
                 <mat-card-title>{{averages?.max | number : '1.0-4'}}</mat-card-title>
+                <h1>USD</h1>
             </mat-card-content>
 
         </mat-card>
@@ -58,6 +60,7 @@
             <mat-card-content>
                 <h1>HIGHEST LOSS</h1>
                 <mat-card-title>{{averages?.min | number : '1.0-4'}}</mat-card-title>
+                <h1>USD</h1>
             </mat-card-content>
 
         </mat-card>

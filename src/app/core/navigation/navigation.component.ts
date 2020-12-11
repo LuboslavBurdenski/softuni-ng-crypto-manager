@@ -17,26 +17,28 @@ export class NavigationComponent implements OnInit {
   currentUser;
   panelOpenState = false;
 
-  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private router: Router,activatedRouteSnapshot: ActivatedRoute) {}
-  
+  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService,
+    private router: Router, activatedRouteSnapshot: ActivatedRoute) { }
+
   get isLogged(): boolean {
     return !!this.auth.currentUser;
   }
   getCurrentUser() {
     this.currentUser = this.auth.currentUser;
   }
+  get currentBalance() {
+    return this.auth.currentBalance;
+  }
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
-  
-  
-  ngOnInit(){
+
+  ngOnInit() {
     this.currentUser = this.auth.currentUser;
   }
   logout() {
-    console.log('LOGOUTTTTTT');
     this.auth.logout().subscribe(() => this.router.navigate(['login']));
   }
 

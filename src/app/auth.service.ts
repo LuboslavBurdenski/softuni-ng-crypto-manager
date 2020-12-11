@@ -9,7 +9,7 @@ import { PositionCreationService } from './position/position-creation.service';
   providedIn: 'root'
 })
 export class AuthService {
-
+  currentBalance;
   currentUser;
   
   constructor(private http: HttpClient,private positionCreationService: PositionCreationService) { }

@@ -18,11 +18,9 @@ export class HomeComponent implements OnDestroy {
   constructor(private userService: UserService, private positionCreationService: PositionCreationService) {
     this.subscription = this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; });
   }
-
   get isThereSelectedCoin() {
     return !!this.positionCreationService.selectedCoin;
   }
-
   addToPosition(e) {
     this.positionCreationService.selectedCoin = e.viewValue;
   }
