@@ -17,25 +17,34 @@ export interface PortfolioData {
 })
 export class ListComponent implements OnInit, OnDestroy {
   positions;
+  filteredPositions;
+  emptyMatch;
+
   inputFilter = '';
   constructor(private router: Router, private listPositions: PositionCreationService) { }
 
   applyFilter(event) {
+    console.log(this.positions);
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this.inputFilter = filterValue;
+    this.filteredPositions = this.positions.filter(coin => coin.symbol.includes(this.inputFilter));
+
+    if (this.filteredPositions.length === 0) {
+      this.emptyMatch = true;
+    } else {
+      this.emptyMatch = false
+    }
+
   }
   ngOnInit() {
     this.listPositions.getAllPositions();
     this.listPositions.returnAsObservable()
-      .pipe(
-        map((coins: any) => {
-          let newCoins = coins.filter(coin => coin.symbol.includes(this.inputFilter));
-          return newCoins;
-        }),
-      )
-      .subscribe((data) => { this.positions = data });
+      .subscribe((data) => {
+        this.positions = data;
+        this.filteredPositions = this.positions.filter(coin => coin.symbol.includes(this.inputFilter))
+      });
   }
-  
+
   portfolioCardClickTradingView(symbol: String) {
     this.router.navigate(['position', 'chart', symbol.toUpperCase()])
   }
