@@ -34,7 +34,8 @@ const routes: Routes = [
         path: 'profile',
         pathMatch: 'full',
         data: {
-          isLogged: true
+          isLogged: true,
+          showBalance: false,
         },
         component: ProfileComponent
       },

@@ -6,7 +6,7 @@
 </mat-card>
 
 <div class="container">
-  <mat-card *ngIf="positions?.length > 0 || !emptyMatch" class="example-card">
+  <mat-card *ngIf="positions?.length > 0 && !emptyMatch" class="example-card">
     <mat-card-content class="grid">
       <mat-card class="example-card-two" *ngFor="let position of filteredPositions">
         <mat-card-header>

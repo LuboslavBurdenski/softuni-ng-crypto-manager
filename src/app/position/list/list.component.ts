@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { filter, map, tap } from 'rxjs/operators';
 import { PositionCreationService } from '../position-creation.service';
 
 export interface PortfolioData {

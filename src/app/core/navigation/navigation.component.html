@@ -48,7 +48,7 @@
         <mat-icon>list</mat-icon>
       </button>
 
-      <mat-expansion-panel *ngIf="isLogged" (click)="getCurrentUser()" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel  *ngIf="isLogged && ifBalance" (click)="getCurrentUser()" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title *ngIf="panelOpenState == true">
             <h3>{{currentUser?.username}}'s</h3>
