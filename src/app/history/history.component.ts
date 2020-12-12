@@ -29,7 +29,7 @@ export class HistoryComponent implements AfterViewInit, OnInit {
   positions;
   dataReady: Boolean = false;
   currentPage;
-  
+
   constructor(private excelService: ExcelService, private historyService: HistoryService) { }
 
   ngOnInit() {
@@ -73,17 +73,34 @@ export class HistoryComponent implements AfterViewInit, OnInit {
         }, 0);
       });
   }
-  
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   exportAsXLSX(): void {
-
+    let excelColumns = ['symbol', 'coinId', 'entry', 'sum', 'shares',
+      'target', 'stop', 'prfLoss', 'prfLossPerCent', 'created_at'];
     console.log(this.currentPage);
-
-    //this.excelService.exportAsExcelFile(this.currentPage, 'sample');
+    let renderedDataForExcel = [];
+    this.currentPage.forEach(p => {
+      let obj = {};
+      for (let key in p) {
+        if (excelColumns.includes(key)) {
+          let newKey = key.toLocaleUpperCase();
+          let newValueForDate;
+          if (key === 'created_at') {
+            newValueForDate = p[key].split('T')[0];
+            obj[newKey] = newValueForDate;
+          } else {
+            obj[newKey] = p[key];
+          }
+        }
+      }
+      renderedDataForExcel.push(obj);
+    });
+    this.excelService.exportAsExcelFile(renderedDataForExcel, 'sample');
   }
 }
 
