@@ -11,8 +11,8 @@ import { PositionCreationService } from './position/position-creation.service';
 export class AuthService {
   currentBalance;
   currentUser;
-  
-  constructor(private http: HttpClient,private positionCreationService: PositionCreationService) { }
+
+  constructor(private http: HttpClient, private positionCreationService: PositionCreationService) { }
   registerService(data): Observable<any> {
     return this.http.post(`/users/register`, data);
   }
@@ -22,12 +22,14 @@ export class AuthService {
   getUserProfile(): Observable<any> {
     return this.http.get(`/users/profile`)
       .pipe(
-        tap(((user) => { this.currentUser = user;})),
+        tap(((user) => { this.currentUser = user; })),
         catchError(() => { this.currentUser = null; return of(null); })
       );
   }
   logout(): Observable<any> {
     this.positionCreationService.subj = new BehaviorSubject([]);
+    this.currentBalance = 0;
+    this.currentUser = {};
     return this.http.get(`/users/logout`).pipe(
       tap(() => this.currentUser = null)
     );

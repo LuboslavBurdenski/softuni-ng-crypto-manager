@@ -80,7 +80,10 @@ export class HistoryComponent implements AfterViewInit, OnInit {
   }
 
   exportAsXLSX(): void {
-    this.excelService.exportAsExcelFile(this.currentPage, 'sample');
+
+    console.log(this.currentPage);
+
+    //this.excelService.exportAsExcelFile(this.currentPage, 'sample');
   }
 }
 

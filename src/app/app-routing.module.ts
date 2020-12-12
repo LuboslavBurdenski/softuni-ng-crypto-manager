@@ -46,10 +46,6 @@ const routes: Routes = [
         component: NotFoundComponent,
         data: {
         }
-      }, {
-        path: '**',
-        pathMatch: 'full',
-        redirectTo: '/not-found'
       }
 
     ]
