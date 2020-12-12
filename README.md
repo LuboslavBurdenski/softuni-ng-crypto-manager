@@ -12,8 +12,8 @@ Then you can see on profile page, providing the most important analytics, such a
 
 
 ## Application provides:
-Only Angular Material use\n
-Authentication with JWT stored in cookies\n
+Only Angular Material use
+Authentication with JWT stored in cookies
 Validation through the all forms in the app
 User Login and Register
 Charts made with ng2-charts and Datatables wtih Angular Material
@@ -23,10 +23,12 @@ MS Excel file upload  with xlsx and file-saver
 Server sent events (Server stream) for real-time data in the portfolio page
 HTTP Interceptors
 
-To use Crypto manager you have clone/download "https://github.com/LuboslavBurdenski/Rest-api" for the backend service
+
 
 ## Quick start
+To use Crypto manager you have to clone/download "https://github.com/LuboslavBurdenski/Rest-api" for the backend service
 git clone https://github.com/LuboslavBurdenski/softuni-ng-crypto-manager.git
+
 1. npm install
 2. ng serve / ng serve -open (you have to be in the main folder a.k.a /softuni-ng-crypto-manager> ng serve/)
 
