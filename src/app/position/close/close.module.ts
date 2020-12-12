@@ -5,7 +5,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { CloseMainComponent } from './close-main/close-main.component';
 import { DialogCloseComponent } from './dialog-close/dialog-close.component';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { DialogCloseComponent } from './dialog-close/dialog-close.component';
     CommonModule,
     RouterModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class CloseModule { }

@@ -4,9 +4,13 @@
         <form #f="ngForm" class="my-form">
             <mat-form-field class="full-width">
                 <mat-label>Sell sum in USD: {{sum.value}}$/{{totalSum}}$</mat-label>
-                <input type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum" #sum='ngModel' required>
+                <input type="number" matInput placeholder="Sum" name="sum" [(ngModel)]="currentData.sum" #sum='ngModel' sumValidator required>
             </mat-form-field>
+            
         </form>
+        <mat-card class="alert" *ngIf='sum.errors?.sumHigherThanZero && !sum.pristine'>Sum can't be lower or equal
+            to
+            0!</mat-card>
         <mat-card class="alert" *ngIf='(sum.value > totalSum) && sum.dirty'>Closing sum can't be higher than your entire
             position!</mat-card>
             <mat-card class="alert" *ngIf='sum.errors?.required'>Sell sum is required!</mat-card>
