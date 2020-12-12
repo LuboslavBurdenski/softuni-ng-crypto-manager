@@ -24,7 +24,11 @@ const routes: Routes = [
                     isLogged: false
                 }
             },
-
+            {
+                path: '**',
+                pathMatch: 'full',
+                redirectTo: '/not-found'
+            }
         ],
     },
 ];

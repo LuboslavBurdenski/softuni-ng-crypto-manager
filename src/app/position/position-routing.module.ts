@@ -33,11 +33,16 @@ const routes: Routes = [
       },
       {
         path: 'chart/:id',
-        pathMatch: 'full',data: {
+        pathMatch: 'full', data: {
           isLogged: true
         },
         component: TradingViewChartComponent,
       },
+      {
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: '/not-found'
+      }
     ],
   },
 ];

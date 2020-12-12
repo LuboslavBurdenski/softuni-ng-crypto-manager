@@ -18,12 +18,12 @@ export class AuthGuard implements CanActivateChild {
     let stream$: Observable<any | null>;
     if (this.auth.currentUser === undefined) {
       stream$ = this.auth.getUserProfile();
+      console.log('profile call');
     } else {
       stream$ = of(this.auth.currentUser);
     }
     return stream$.pipe(
       map((user) => {
-       
         const isLoggedFromData = childRoute.data.isLogged;
         return typeof isLoggedFromData !== 'boolean' || isLoggedFromData === !!user;
       }),

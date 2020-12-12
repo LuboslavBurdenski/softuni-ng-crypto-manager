@@ -40,10 +40,17 @@ const routes: Routes = [
         },
         component: ProfileComponent
       },
-     
+      {
+        path: 'not-found',
+        pathMatch: 'full',
+        component: NotFoundComponent,
+        data: {
+        }
+      }
+
     ]
   },
- 
+
 
 ];
 

@@ -37,7 +37,7 @@ export class RegisterComponent {
     console.log(data);
     this.auth.registerService(data).subscribe({
       next: (resp) => {
-        this.auth.currentUser = resp;
+        this.auth.currentUser = resp.user;
         this.router.navigate(['/']);
       },
       error: (err) => {
