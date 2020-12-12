@@ -1,0 +1,2 @@
+<mat-card class="alert" *ngIf='(isThereErrorEvent | async) && errorMsg'>{{errorMsg}}</mat-card>
+<mat-card class="success" *ngIf='(isThereSuccessEvent | async) && successMsg'>{{successMsg.message}}</mat-card>

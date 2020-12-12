@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogCreateComponent } from '../dialog/dialog-create.component';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-main-create',
+  templateUrl: './main-create.component.html',
+  styleUrls: ['./main-create.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainCreateComponent implements OnInit {
   @Input() coin;
 
   constructor(public dialog: MatDialog) { }
@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
   openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(DialogCreateComponent, {
       width: '350px',
       direction: "ltr",
 

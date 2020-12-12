@@ -12,7 +12,7 @@ export class PositionCreationService {
   public detailsForEdit;
   public dataAfterEditing = '';
   public dataAfterClose = '';
-  
+
   public subj = new BehaviorSubject([]);
 
   constructor(public http: HttpClient) { }
@@ -20,13 +20,10 @@ export class PositionCreationService {
   returnAsObservable() {
     return this.subj.asObservable();
   }
-  createPosition(data): Observable<any> {
-    return this.http.post(`/position/create`, data);
-  }
   getAllPositions() {
     let subject = this.subj;
     if (typeof (EventSource) !== undefined) {
-      this.evs = new EventSource("http://localhost:3000/api/position/list", {withCredentials: true});
+      this.evs = new EventSource("http://localhost:3000/api/position/list", { withCredentials: true });
 
       this.evs.onopen = function (e) {
         console.log("Opening connection.Ready State is" + " " + this.readyState);
@@ -34,10 +31,11 @@ export class PositionCreationService {
       this.evs.onmessage = function (e) {
         // console.log('Message Received. Ready State is' + " " + this.readyState);
         subject.next(JSON.parse(e.data));
-        // console.log(JSON.parse(e.data));
       }
+      
       this.evs.addEventListener("timestamp", function (e) {
         console.log("Timestamp event Received. Ready State is " + " " + this.readyState);
+        console.log(subject);
       })
       this.evs.onerror = function (e) {
         console.log(e);
@@ -49,6 +47,9 @@ export class PositionCreationService {
   }
   stopExchangeUpdates() {
     this.evs.close();
+  }
+  createPosition(data): Observable<any> {
+    return this.http.post(`/position/create`, data);
   }
   getDetailForPosition(coin: String) {
     return this.http.get(`/position/details/${coin}`);

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import {  Observable, Subject } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth.service';
-import { ActivatedRoute, ActivationStart, Router } from '@angular/router';
+import {  ActivationStart, Router } from '@angular/router';
 
 
 
@@ -19,7 +19,7 @@ export class NavigationComponent implements OnInit {
   ifBalance: boolean = true;
 
   constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService,
-    private router: Router, private activatedRoute: ActivatedRoute) { console.log() }
+    private router: Router) { }
 
   get isLogged(): boolean {
     return !!this.auth.currentUser;
@@ -40,19 +40,19 @@ export class NavigationComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof ActivationStart) {
         let data = event.snapshot.data;
-       
         if (data.hasOwnProperty('showBalance')) {
           this.ifBalance = false;
+          this.panelOpenState = false;
         } else {
           this.ifBalance = true;
         }
-       
       }
     })
+
     this.currentUser = this.auth.currentUser;
   }
   logout() {
-    this.auth.logout().subscribe(() => this.router.navigate(['login']));
+    this.auth.logout().subscribe(() => this.router.navigate(['user', 'login']));
   }
 
 }

@@ -7,7 +7,7 @@ import { appInterceptorProvider } from './interceptors/app.interceptor';
 import { loaderInterceptorProvider } from './interceptors/loader.interceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { balanceInterceptorProvider } from './interceptors/balance.interceptor';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { balanceInterceptorProvider } from './interceptors/balance.interceptor';
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   providers: [appInterceptorProvider, loaderInterceptorProvider, balanceInterceptorProvider]
 })

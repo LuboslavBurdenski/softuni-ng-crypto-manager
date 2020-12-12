@@ -47,17 +47,20 @@
         *ngIf="isHandset$ | async">
         <mat-icon>list</mat-icon>
       </button>
-
-      <mat-expansion-panel  *ngIf="isLogged && ifBalance" (click)="getCurrentUser()" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      
+      <app-notifications></app-notifications>
+      
+      <mat-expansion-panel *ngIf="isLogged && ifBalance" (click)="getCurrentUser()" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title *ngIf="panelOpenState == true">
             <h3>{{currentUser?.username}}'s</h3>
           </mat-panel-title>
-          <mat-panel-description >
+          <mat-panel-description>
             Account balance {{panelOpenState ? 'opened' : ''}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <h3 *ngIf="panelOpenState == true">{{currentBalance | number : '1.0-4'}}$</h3>
+        <h3 *ngIf="panelOpenState == true">{{currentBalance | number : '1.0-2'}}$</h3>
       </mat-expansion-panel>
 
     </mat-toolbar>

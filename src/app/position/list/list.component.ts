@@ -23,7 +23,7 @@ export class ListComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private listPositions: PositionCreationService) { }
 
   applyFilter(event) {
-    console.log(this.positions);
+    
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this.inputFilter = filterValue;
     this.filteredPositions = this.positions.filter(coin => coin.symbol.includes(this.inputFilter));

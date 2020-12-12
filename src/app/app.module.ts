@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { ChartsModule } from 'ng2-charts';
 import { UserModule } from './user/user.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UserModule } from './user/user.module';
     HomeComponent,
     HistoryComponent,
     ProfileComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

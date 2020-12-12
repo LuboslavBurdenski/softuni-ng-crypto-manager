@@ -1,6 +1,4 @@
-
 <div class="entire-form">
-  
   <mat-form-field appearance="fill">
     <mat-label>TOP 100 coins from CoinGecko</mat-label>
     <mat-select  >
@@ -15,7 +13,5 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <app-main [coin]="!isThereSelectedCoin" ></app-main>
-  
+  <app-main-create [coin]="!isThereSelectedCoin" ></app-main-create>
 </div>

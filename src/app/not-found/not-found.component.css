@@ -1,0 +1,9 @@
+h1{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    font-size: 800%;
+    color:  #21CE99 ;
+}

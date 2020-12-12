@@ -57,7 +57,7 @@
 
       <ng-container matColumnDef="created_at">
         <th  class="w-75 th-center" mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let row">{{row?.created_at}}% </td>
+        <td mat-cell *matCellDef="let row">{{row?.created_at | date: 'M/d/yy, h:mm a'}}</td>
       </ng-container>
 
       <tr class="mat-header" mat-header-row *matHeaderRowDef="['coinId', 'symbol', 'entry', 'currentPrice', 'sum', 'target', 'stop', 'prfLoss', 'prfLossPerCent', 'created_at']"></tr>
@@ -66,7 +66,7 @@
       </tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="9">No data provided</td>
+        <td class="mat-cell" colspan="10">No data provided</td>
       </tr>
 
     </table>

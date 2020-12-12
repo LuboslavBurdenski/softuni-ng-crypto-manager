@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 
 
@@ -20,7 +21,7 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         data: {
-         
+
         }
       },
       {
@@ -39,15 +40,10 @@ const routes: Routes = [
         },
         component: ProfileComponent
       },
-      
-//     {
-//       path: '**',
-//       component: NotFoundComponent,
-//       data: {
-//         title: '404'
-//       }
+     
     ]
   },
+ 
 
 ];
 

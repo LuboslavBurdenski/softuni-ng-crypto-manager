@@ -19,8 +19,6 @@ export class BalanceInterceptor implements HttpInterceptor {
       tap(evt => {
         if (evt instanceof HttpResponse) {
           if (evt.headers.get('User-Balance')) {
-            console.log(evt.headers.get('User-Balance'));
-            console.log(request.url);
             this.auth.currentBalance = evt.headers.get('User-Balance');
           }
         }
