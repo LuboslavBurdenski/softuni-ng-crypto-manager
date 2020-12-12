@@ -15,6 +15,33 @@ button {
     background-color: #21CE99 !important;
 }
 
+.major-card {
+    justify-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    height: 19.5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 1.5%;
+}
+
+.minor-card {
+    justify-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    height: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 1%;
+    font-weight: bold;
+}
+
+mat-list-option:hover {
+    background-color: #21CE99;
+}
+
 app-main {
     position: center;
 }

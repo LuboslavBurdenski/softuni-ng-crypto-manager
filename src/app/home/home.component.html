@@ -1,17 +1,26 @@
+<mat-selection-list *ngIf="!isLogged" class="minor-card" #all>
+  <mat-list-option *ngFor="let question of questions">
+    {{question}}
+  </mat-list-option>
+</mat-selection-list>
+
+
 <div class="entire-form">
+
   <mat-form-field appearance="fill">
     <mat-label>TOP 100 coins from CoinGecko</mat-label>
-    <mat-select  >
+    <mat-select>
       <mat-form-field>
         <mat-label>Search</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
       </mat-form-field>
-      <mat-option  *ngFor="let coin of filtered" [disabled]="emptyMatch" [value]="coin.symbol" #selected (click)="addToPosition(selected)" >
+      <mat-option *ngFor="let coin of filtered" [disabled]="emptyMatch" [value]="coin.symbol" #selected
+        (click)="addToPosition(selected)">
 
         {{coin.id | uppercase}}/{{coin.symbol | uppercase}}
 
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <app-main-create [coin]="!isThereSelectedCoin" ></app-main-create>
+  <app-main-create [coin]="!isThereSelectedCoin"></app-main-create>
 </div>

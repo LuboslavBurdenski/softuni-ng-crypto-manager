@@ -1,26 +1,42 @@
-import { Component, ElementRef, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, Renderer2, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
 import { interval, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { UserService } from './coins.service';
+import { CoinService } from './coins.service';
 import { PositionCreationService } from '../position/position-creation.service'
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent implements OnDestroy, AfterViewInit {
+  @ViewChild('all') result;
+
   data;
   filtered;
-  
+
   emptyMatch: Boolean;
   selectedCoin;
   subscription;
-  constructor(private userService: UserService, private positionCreationService: PositionCreationService) {
-    this.subscription = this.userService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; });
+
+  questions: string[] = ['You want to track your trades?', 'You want user-friendly design?', 'You want a real-time data portfolio of your positions?',
+    'You are used to MS Excel and you want all of your data to be in that format?', 'If you match everything of the above check each line!'];
+
+  constructor(private coinService: CoinService, private positionCreationService: PositionCreationService,
+    private auth: AuthService, private router: Router) {
+    this.subscription = this.coinService.loadCoins().subscribe(coins => { this.data = coins; this.filtered = coins; });
+
+  }
+  ngOnChanges(changes: SimpleChanges) {
+
   }
   get isThereSelectedCoin() {
     return !!this.positionCreationService.selectedCoin;
+  }
+  get isLogged(): boolean {
+    return !!this.auth.currentUser;
   }
   addToPosition(e) {
     this.positionCreationService.selectedCoin = e.viewValue;
@@ -39,6 +55,14 @@ export class HomeComponent implements OnDestroy {
     }
 
     this.filtered = dataFiltered;
+  }
+  ngAfterViewInit() {
+    this.result.selectionChange.subscribe(() => {
+      if ([...this.result.selectedOptions._selection].length === 5) {
+        this.router.navigate(['user', 'register'])
+      }
+    }
+    )
   }
   ngOnDestroy() {
     this.subscription.unsubscribe()
