@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
 Crypto manager is app built for Angular course in Software University (SoftUni). Crypto manager is a simple app in which you can access 
-top one hundred crypto currency coins from CoinGecko REST API, at the home page, updated every hour, no matter if you are logged in or not.
+top one hundred crypto currency coins from CoinGecko REST API, at the home page, no matter if you are logged in or not.
 You can open position, only if you are logged in, if you fill the required parameters in the dialog form which pops up. Then you are redirected to the portfolio page automatically and you will be shown your current portfolio. 
 If you've opened position with target profit and stop loss, respectively with current price of that coin higher or equal, or lower or equal, your position wil be added to history section.
 In history section you can see your closed positions with full description of them. Also at history you can sort, filter and download the data in MS Excel format. In portfolio, where your open trades are stored, you can access TradingView integrated charts. Also, last, but not least at portfolio, you can open details page where you fill find full description of you trade. At details page you can also edit target and stop loss, or close the position fully
@@ -11,10 +11,9 @@ or partially.
 Then you can see on profile page, providing the most important analytics, such as income by month in bar chart, currently own crypto in pie chart, also current balance, average win rate, highest win and highest loss in the history of yor account.
 
 
-This application provides the following features:
-
-Only Angular Material use
-Authentication with JWT stored in cookies
+## Application provides:
+Only Angular Material use\n
+Authentication with JWT stored in cookies\n
 Validation through the all forms in the app
 User Login and Register
 Charts made with ng2-charts and Datatables wtih Angular Material

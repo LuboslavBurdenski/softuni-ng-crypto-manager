@@ -19,7 +19,7 @@ export class LoginComponent {
     let form = f.value;
     this.auth.loginUserService(form).subscribe({
       next: (resp) => {
-        this.auth.currentUser = resp;
+        this.auth.currentUser = resp.user;
         this.isLoading = false;
         this.router.navigate(['/']);
       },

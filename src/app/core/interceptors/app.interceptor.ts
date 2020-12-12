@@ -1,9 +1,8 @@
 import { Injectable, Provider } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { tap } from 'rxjs/operators';
-import { NotificationsComponent } from '../../shared/notifications/notifications.component';
 import { NotificationsService } from 'src/app/shared/notifications.service';
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -18,14 +17,11 @@ export class AppInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap(e => {
         if (e instanceof HttpResponse && (e.url.includes('create') || e.url.includes('edit') ||
-          e.url.includes('close') || e.url.includes('login') || e.url.includes('register'))) {
+          e.url.includes('close') || e.url.includes('login') || e.url.includes('register') || e.url.includes('logout'))) {
           if (e.status === 200) {
-            console.log(e.body);
             this.notifService.showSuccess(e.body || null);
-          }
+          } 
         }
-
-
       }),
     )
   }
