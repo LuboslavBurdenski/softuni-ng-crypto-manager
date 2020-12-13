@@ -8,7 +8,7 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import {  tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth.service';
 
 @Injectable()
@@ -23,9 +23,7 @@ export class BalanceInterceptor implements HttpInterceptor {
           }
         }
       }),
-
     );
-
   }
 }
 

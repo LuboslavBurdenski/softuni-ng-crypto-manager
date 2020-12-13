@@ -1,6 +1,4 @@
-import { Component, ElementRef, OnDestroy, Renderer2, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
-import { interval, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { Component, OnDestroy, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
 import { CoinService } from './coins.service';
 import { PositionCreationService } from '../position/position-creation.service'
 import { AuthService } from '../auth.service';
