@@ -12,16 +12,16 @@ Then you can see on profile page, providing the most important analytics, such a
 
 
 ## Application provides:
-Only Angular Material use;
-Authentication with JWT stored in cookies;
-Validation through the all forms in the app;
-User Login and Register;
-Charts made with ng2-charts and Datatables wtih Angular Material;
-Create/Update Data;
-Filter and Sort Data;
-MS Excel file upload  with xlsx and file-saver;
-Server sent events (Server stream) for real-time data in the portfolio page;
-HTTP Interceptors;
+- Only Angular Material use;
+- Authentication with JWT stored in cookies;
+- Validation through the all forms in the app;
+- User Login and Register;
+- Charts made with ng2-charts and Datatables wtih Angular Material;
+- Create/Update Data;
+- Filter and Sort Data;
+- MS Excel file upload  with xlsx and file-saver;
+- Server sent events (Server stream) for real-time data in the portfolio page;
+- HTTP Interceptors;
 
 
 
