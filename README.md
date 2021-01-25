@@ -16,11 +16,13 @@ Then you can see on profile page, providing the most important analytics, such a
 - Authentication with JWT stored in cookies;
 - Validation through the all forms in the app;
 - User Login and Register;
-- Charts made with ng2-charts and Datatables wtih Angular Material;
-- Create/Update Data;
-- Filter and Sort Data;
+- Notifications for the main actions, made with interceptors;
+- Charts made with ng2-charts and Datatables wtih Angular Material, for the statistics on profile's page;
+- Create/Update/Delete Data /opening, updating and closing crypto positions;
+- Filter and Sort Data with different approaches;
+- TradingView integration;
 - MS Excel file upload  with xlsx and file-saver;
-- Server sent events (Server stream) for real-time data in the portfolio page;
+- Server sent events (Server stream) for real-time data, presented on the portfolio page;
 - HTTP Interceptors;
 
 
