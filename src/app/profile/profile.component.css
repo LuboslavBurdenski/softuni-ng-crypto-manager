@@ -10,7 +10,6 @@ mat-grid-list {
     justify-items: center;
     justify-content: center;
     text-align: center;
-   
 }
 .avg {
     width: 75%;
@@ -18,7 +17,6 @@ mat-grid-list {
     justify-items: center;
     background-color: #1E272C !important;
     color: white;
-  
     text-align: center;
 }
 h3{
@@ -30,7 +28,6 @@ h3{
 }
 
 mat-card-content {
-   
     align-items: center; 
     justify-content: center;
 }

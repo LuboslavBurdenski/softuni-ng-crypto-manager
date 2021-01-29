@@ -1,15 +1,15 @@
 .alert {
     background-color: #ff80ab;
     color: rgb(23, 6, 39);
-    position:absolute;
-    top:10px;
+    position: absolute;
+    top: 10px;
     right: 10px;
 }
-.success {
-    background-color:   #21CE99 ;
-    color: rgb(23, 6, 39);
-    position:absolute;
-    top:10px;
-    right: 10px;
 
+.success {
+    background-color: #21CE99;
+    color: rgb(23, 6, 39);
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

@@ -1,19 +1,13 @@
 .entire {
     height: 100%;
     width: 100%;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
+    margin: auto;
     text-align: center;
 }
 
 .full-width {
     width: 100%;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
+    margin: auto
 }
 button {
     width: 100%;
