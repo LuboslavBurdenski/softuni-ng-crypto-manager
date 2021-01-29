@@ -1,4 +1,4 @@
-import { Component, OnDestroy, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 import { CoinService } from './coins.service';
 import { PositionCreationService } from '../position/position-creation.service'
 import { AuthService } from '../auth.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnDestroy, AfterViewInit {
+export class HomeComponent implements OnDestroy {
   @ViewChild('all') result;
 
   data;
@@ -18,9 +18,6 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
   emptyMatch: Boolean;
   selectedCoin;
   subscription;
-
-  questions: string[] = ['You want to track your trades?', 'You want user-friendly design?', 'You want a real-time data portfolio of your positions?',
-    'You are used to MS Excel and you want all of your data to be in that format?', 'If you match everything of the above check each line!'];
 
   constructor(private coinService: CoinService, private positionCreationService: PositionCreationService,
     private auth: AuthService, private router: Router) {
@@ -53,14 +50,6 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
     }
 
     this.filtered = dataFiltered;
-  }
-  ngAfterViewInit() {
-    this.result.selectionChange.subscribe(() => {
-      if ([...this.result.selectedOptions._selection].length === 5) {
-        this.router.navigate(['user', 'register'])
-      }
-    }
-    )
   }
   ngOnDestroy() {
     this.subscription.unsubscribe()
