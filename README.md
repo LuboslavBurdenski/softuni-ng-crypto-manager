@@ -12,14 +12,15 @@ Then you can see on profile page, providing the most important analytics, such a
 
 
 ## Application provides:
-- Only Angular Material use;
+- Angular Material;
+- RxJS
 - Authentication with JWT stored in cookies;
 - Validation through the all forms in the app;
 - User Login and Register;
 - Notifications for the main actions, made with interceptors;
 - Charts made with ng2-charts and Datatables wtih Angular Material, for the statistics on profile's page;
-- Create/Update/Delete Data /opening, updating and closing crypto positions;
-- Filter and Sort Data with different approaches;
+- Opening, Updating and Closing crypto positions;
+- Filter and Sort Data implemented with different approaches;
 - TradingView integration;
 - MS Excel file upload  with xlsx and file-saver;
 - Server sent events (Server stream) for real-time data, presented on the portfolio page;
